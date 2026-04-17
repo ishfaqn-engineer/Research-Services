@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ScholarAid – Research & Academic Services</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --secondary: #06b6d4;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --dark: #0f172a;
+      --text: #1e293b;
+      --muted: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 4px 24px rgba(79,70,229,0.10);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: .92rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: var(--primary); color: #fff; border: none;
+      padding: 9px 22px; border-radius: 50px; font-size: .9rem;
+      font-weight: 600; cursor: pointer; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--primary-dark); }
+    .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+      padding: 90px 5% 80px;
+      text-align: center; color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,.2);
+      border: 1px solid rgba(255,255,255,.35);
+      padding: 5px 16px; border-radius: 50px; font-size: .82rem;
+      font-weight: 600; margin-bottom: 20px; letter-spacing: .5px;
+    }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.15; margin-bottom: 18px; }
+    .hero p { font-size: 1.1rem; opacity: .88; max-width: 560px; margin: 0 auto 36px; }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: #fff; color: var(--primary); border: none;
+      padding: 12px 30px; border-radius: 50px; font-size: 1rem;
+      font-weight: 700; cursor: pointer; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+    .btn-outline-white {
+      background: transparent; color: #fff;
+      border: 2px solid rgba(255,255,255,.7);
+      padding: 12px 30px; border-radius: 50px; font-size: 1rem;
+      font-weight: 700; cursor: pointer; transition: background .2s;
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,.12); }
+    .hero-stats { display: flex; gap: 40px; justify-content: center; margin-top: 50px; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 900; }
+    .stat-label { font-size: .82rem; opacity: .75; margin-top: 2px; }
+
+    /* ── SECTION WRAPPER ── */
+    .section { padding: 72px 5%; }
+    .section-header { text-align: center; margin-bottom: 48px; }
+    .section-tag {
+      display: inline-block; background: #ede9fe; color: var(--primary);
+      padding: 4px 14px; border-radius: 50px; font-size: .78rem;
+      font-weight: 700; letter-spacing: .6px; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .section-header h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: var(--dark); margin-bottom: 12px; }
+    .section-header p { color: var(--muted); max-width: 520px; margin: 0 auto; }
+
+    /* ── SERVICES GRID ── */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .service-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 24px;
+      transition: transform .25s, box-shadow .25s; cursor: pointer;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: var(--card-accent, var(--primary));
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(79,70,229,.15); }
+    .service-icon { font-size: 2.4rem; margin-bottom: 14px; }
+    .service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .service-card p { color: var(--muted); font-size: .9rem; line-height: 1.6; margin-bottom: 16px; }
+    .price-tag {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0;
+      padding: 5px 12px; border-radius: 50px; font-weight: 700; font-size: .88rem;
+    }
+    .service-btn {
+      display: block; width: 100%; margin-top: 16px;
+      background: var(--primary); color: #fff; border: none;
+      padding: 10px; border-radius: 10px; font-size: .9rem;
+      font-weight: 600; cursor: pointer; transition: background .2s;
+    }
+    .service-btn:hover { background: var(--primary-dark); }
+
+    /* ── POPULAR BADGE ── */
+    .popular-badge {
+      position: absolute; top: 14px; right: 14px;
+      background: var(--accent); color: #fff;
+      padding: 3px 10px; border-radius: 50px; font-size: .72rem; font-weight: 700;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; position: relative; }
+    .step { text-align: center; flex: 1; min-width: 180px; padding: 0 20px; position: relative; }
+    .step:not(:last-child)::after {
+      content: '→'; position: absolute; right: -12px; top: 28px;
+      font-size: 1.4rem; color: var(--border);
+    }
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; font-weight: 800; margin: 0 auto 14px;
+    }
+    .step h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .step p { color: var(--muted); font-size: .88rem; line-height: 1.5; }
+
+    /* ── PAYMENT ── */
+    .payment-box {
+      max-width: 520px; margin: 0 auto;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 36px; text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .upi-icon { font-size: 3rem; margin-bottom: 12px; }
+    .payment-box h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
+    .payment-box p { color: var(--muted); margin-bottom: 24px; }
+    .upi-id-display {
+      background: #f0f9ff; border: 2px dashed var(--secondary);
+      border-radius: 12px; padding: 16px 24px;
+      font-size: 1.3rem; font-weight: 800; color: var(--primary);
+      letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .upi-note { font-size: .82rem; color: var(--muted); margin-bottom: 24px; }
+    .payment-steps-list { text-align: left; list-style: none; }
+    .payment-steps-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .9rem;
+    }
+    .payment-steps-list li:last-child { border: none; }
+    .payment-steps-list li span.icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── ORDER FORM ── */
+    .order-section { background: linear-gradient(135deg, #f0f4ff 0%, #e0f7fa 100%); }
+    .order-form-card {
+      max-width: 680px; margin: 0 auto;
+      background: var(--card); border-radius: var(--radius);
+      padding: 40px; box-shadow: var(--shadow); border: 1px solid var(--border);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    label { font-size: .88rem; font-weight: 600; color: var(--text); }
+    input, select, textarea {
+      padding: 10px 14px; border: 1.5px solid var(--border);
+      border-radius: 10px; font-size: .95rem; color: var(--text);
+      background: var(--bg); transition: border-color .2s, box-shadow .2s;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none; border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+    }
+    textarea { resize: vertical; min-height: 90px; }
+    .submit-btn {
+      width: 100%; padding: 13px; background: var(--primary); color: #fff;
+      border: none; border-radius: 12px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: background .2s, transform .15s; margin-top: 8px;
+    }
+    .submit-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .form-note { font-size: .82rem; color: var(--muted); text-align: center; margin-top: 12px; }
+
+    /* ── PRICING TABLE ── */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+    .pricing-card {
+      background: var(--card); border: 1.5px solid var(--border);
+      border-radius: var(--radius); padding: 32px 28px; text-align: center;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .pricing-card.featured {
+      border-color: var(--primary); background: #f5f3ff;
+      transform: scale(1.03);
+    }
+    .pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .pricing-card.featured:hover { transform: scale(1.03) translateY(-5px); }
+    .pricing-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .pricing-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; color: var(--dark); }
+    .pricing-amount { font-size: 2.2rem; font-weight: 900; color: var(--primary); }
+    .pricing-amount sub { font-size: 1rem; font-weight: 600; }
+    .pricing-per { color: var(--muted); font-size: .85rem; margin-bottom: 20px; }
+    .pricing-features { list-style: none; text-align: left; }
+    .pricing-features li {
+      padding: 6px 0; font-size: .88rem; color: var(--text);
+      display: flex; gap: 8px; align-items: center;
+    }
+    .pricing-features li::before { content: '✓'; color: var(--success); font-weight: 800; flex-shrink: 0; }
+    .pricing-cta {
+      display: block; width: 100%; margin-top: 24px;
+      padding: 11px; background: var(--primary); color: #fff;
+      border: none; border-radius: 10px; font-weight: 700;
+      font-size: .95rem; cursor: pointer; transition: background .2s;
+    }
+    .pricing-cta:hover { background: var(--primary-dark); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .testimonial-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+    }
+    .stars { color: var(--accent); font-size: 1rem; margin-bottom: 12px; }
+    .testimonial-card p { font-size: .92rem; color: var(--text); line-height: 1.7; font-style: italic; margin-bottom: 16px; }
+    .reviewer { display: flex; align-items: center; gap: 12px; }
+    .avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .95rem; flex-shrink: 0;
+    }
+    .reviewer-info strong { display: block; font-size: .9rem; font-weight: 700; }
+    .reviewer-info span { font-size: .8rem; color: var(--muted); }
+
+    /* ── FEEDBACK & GRIEVANCE ── */
+    .tabs { display: flex; gap: 4px; background: #f1f5f9; border-radius: 12px; padding: 4px; margin-bottom: 32px; }
+    .tab-btn {
+      flex: 1; padding: 10px 16px; border: none; background: transparent;
+      border-radius: 9px; font-size: .9rem; font-weight: 600;
+      color: var(--muted); cursor: pointer; transition: all .2s;
+    }
+    .tab-btn.active { background: var(--card); color: var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+    .radio-group { display: flex; gap: 16px; flex-wrap: wrap; }
+    .radio-label {
+      display: flex; align-items: center; gap: 8px;
+      cursor: pointer; font-size: .9rem; font-weight: 500;
+    }
+    .rating-stars { display: flex; gap: 6px; font-size: 2rem; cursor: pointer; }
+    .rating-stars span { transition: transform .15s; }
+    .rating-stars span:hover, .rating-stars span.selected { transform: scale(1.2); }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; margin-bottom: 12px; overflow: hidden;
+    }
+    .faq-question {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 22px; cursor: pointer; font-weight: 600; font-size: .95rem;
+      transition: background .2s;
+    }
+    .faq-question:hover { background: #f8fafc; }
+    .faq-icon { font-size: 1.2rem; color: var(--primary); transition: transform .25s; flex-shrink: 0; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .25s; padding: 0 22px; }
+    .faq-answer p { padding-bottom: 18px; color: var(--muted); line-height: 1.7; font-size: .92rem; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.75);
+      padding: 56px 5% 28px;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand .nav-logo { font-size: 1.5rem; color: #fff; margin-bottom: 12px; display: block; }
+    .footer-brand p { font-size: .9rem; line-height: 1.7; }
+    .footer-col h4 { color: #fff; font-weight: 700; margin-bottom: 14px; font-size: .95rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a { color: rgba(255,255,255,.6); text-decoration: none; font-size: .88rem; transition: color .2s; }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; text-align: center; font-size: .84rem; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      background: var(--dark); color: #fff; padding: 14px 22px;
+      border-radius: 12px; font-size: .92rem; font-weight: 500;
+      box-shadow: 0 8px 32px rgba(0,0,0,.25); display: none;
+      align-items: center; gap: 10px;
+      animation: slideUp .3s ease;
+    }
+    .toast.show { display: flex; }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(15,23,42,.55);
+      backdrop-filter: blur(4px); z-index: 200;
+      display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--card); border-radius: var(--radius);
+      padding: 36px; max-width: 480px; width: 100%;
+      box-shadow: 0 24px 64px rgba(0,0,0,.25);
+      animation: popIn .25s ease;
+    }
+    @keyframes popIn { from { transform: scale(.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .modal h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
+    .modal p { color: var(--muted); font-size: .9rem; margin-bottom: 20px; }
+    .modal-close {
+      float: right; background: none; border: none;
+      font-size: 1.4rem; cursor: pointer; color: var(--muted); margin-top: -8px;
+    }
+    .qr-placeholder {
+      width: 160px; height: 160px; margin: 0 auto 16px;
+      background: #f1f5f9; border: 2px dashed var(--border);
+      border-radius: 12px; display: flex; align-items: center;
+      justify-content: center; flex-direction: column; gap: 8px;
+      font-size: .82rem; color: var(--muted); text-align: center;
+    }
+    .qr-placeholder span { font-size: 2.5rem; }
+    .modal-upi {
+      background: #ede9fe; color: var(--primary); text-align: center;
+      padding: 12px; border-radius: 10px; font-weight: 800; font-size: 1.1rem;
+      letter-spacing: .5px; margin-bottom: 16px;
+    }
+    .copy-btn {
+      display: block; width: 100%; padding: 10px;
+      background: var(--primary); color: #fff; border: none;
+      border-radius: 10px; font-weight: 700; cursor: pointer; font-size: .92rem;
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .whatsapp-float {
+      position: fixed; bottom: 28px; left: 28px; z-index: 150;
+      background: #25d366; color: #fff; border: none;
+      width: 56px; height: 56px; border-radius: 50%;
+      font-size: 1.6rem; cursor: pointer; box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .steps { flex-direction: column; align-items: center; }
+      .step:not(:last-child)::after { content: '↓'; right: auto; top: auto; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+    }
+
+    /* ── TRACK ORDER ── */
+    .track-box {
+      max-width: 500px; margin: 0 auto;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px; text-align: center;
+    }
+    .track-input-row { display: flex; gap: 10px; }
+    .track-input-row input { flex: 1; }
+    .track-btn {
+      padding: 10px 20px; background: var(--primary); color: #fff;
+      border: none; border-radius: 10px; font-weight: 700; cursor: pointer;
+    }
+    .track-result { margin-top: 20px; text-align: left; display: none; }
+    .track-step {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .track-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--success); flex-shrink: 0; margin-top: 5px;
+    }
+    .track-dot.pending { background: var(--border); }
+
+    .section-alt { background: #f1f5f9; }
+
+    /* Announcement bar */
+    .announcement {
+      background: var(--primary); color: #fff;
+      text-align: center; padding: 10px 5%;
+      font-size: .88rem; font-weight: 500;
+    }
+    .announcement strong { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement">
+  🎓 Exclusive for Research Scholars! <strong>First Plagiarism Check FREE</strong> on orders above ₹500. Limited offer!
+</div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">Scholar<span>Aid</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#order">Order Now</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#feedback">Feedback</a></li>
+  </ul>
+  <button class="nav-cta" onclick="scrollToOrder()">Get Started</button>
+  <div class="hamburger" onclick="toggleMobileMenu()">☰</div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-badge">✦ Trusted by 500+ Research Scholars</div>
+  <h1>Your Academic Success,<br>Our Mission</h1>
+  <p>Plagiarism checks, thesis writing, AI humanization & more — professional academic services at student-friendly prices.</p>
+  <div class="hero-btns">
+    <button class="btn-white" onclick="scrollToOrder()">Place an Order</button>
+    <button class="btn-outline-white" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">View Services</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Scholars Served</div></div>
+    <div class="stat"><div class="stat-num">₹50</div><div class="stat-label">Plagiarism Check</div></div>
+    <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Avg Turnaround</div></div>
+    <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Average Rating</div></div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="section" id="services">
+  <div class="section-header">
+    <div class="section-tag">Our Services</div>
+    <h2>Everything You Need for Academic Excellence</h2>
+    <p>Comprehensive research support services tailored for PhD scholars, postgraduates, and researchers.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card" style="--card-accent:#4f46e5" onclick="openOrderModal('Plagiarism Check')">
+      <div class="service-icon">🔍</div>
+      <h3>Plagiarism Check</h3>
+      <p>Turnitin / iThenticate similarity report with detailed analysis and percentage breakdown per chapter.</p>
+      <div class="price-tag">₹50 / file</div>
+      <button class="service-btn">Order Now</button>
+    </div>
+    <div class="service-card" style="--card-accent:#06b6d4" onclick="openOrderModal('Thesis Writing')">
+      <div class="popular-badge">Popular</div>
+      <div class="service-icon">📝</div>
+      <h3>Thesis Writing</h3>
+      <p>Full or partial thesis writing — introduction, literature review, methodology, results & conclusion. Plagiarism-free guaranteed.</p>
+      <div class="price-tag">₹6,000 – ₹40,000</div>
+      <button class="service-btn">Order Now</button>
+    </div>
+    <div class="service-card" style="--card-accent:#f59e0b" onclick="openOrderModal('AI Humanizer')">
+      <div class="service-icon">🤖</div>
+      <h3>AI Humanizer</h3>
+      <p>Transform AI-generated text into natural, human-like writing that bypasses AI detection tools like GPTZero & Turnitin.</p>
+      <div class="price-tag">₹100 / file</div>
+      <button class="service-btn">Order Now</button>
+    </div>
+    <div class="service-card" style="--card-accent:#10b981" onclick="openOrderModal('Proofreading & Editing')">
+      <div class="service-icon">✏️</div>
+      <h3>Proofreading & Editing</h3>
+      <p>Grammar, syntax, clarity, and flow corrections. APA/MLA/Chicago style formatting included.</p>
+      <div class="price-tag">₹500 – ₹3,000</div>
+      <button class="service-btn">Order Now</button>
+    </div>
+    <div class="service-card" style="--card-accent:#8b5cf6" onclick="openOrderModal('Research Paper Writing')">
+      <div class="service-icon">📄</div>
+      <h3>Research Paper Writing</h3>
+      <p>Journal-ready research papers for Scopus, Web of Science, and UGC-listed journals with proper citations.</p>
+      <div class="price-tag">₹2,500 – ₹12,000</div>
+      <button class="service-btn">Order Now</button>
+    </div>
+    <div class="service-card" style="--card-accent:#ec4899" onclick="openOrderModal('Literature Review')">
+      <div class="service-icon">📚</div>
+      <h3>Literature Review</h3>
+      <p>Comprehensive systematic literature review with 50–150 recent sources, thematic synthesis, and research gap identification.</p>
+      <div class="price-tag">₹1,500 – ₹8,000</div>
+      <button class="service-btn">Order Now</button>
+    </div>
+    <div class="service-card" style="--card-accent:#f97316" onclick="openOrderModal('Statistical Analysis')">
+      <div class="service-icon">📊</div>
+      <h3>Statistical Analysis</h3>
+      <p>SPSS, R, Python data analysis — descriptive statistics, regression, ANOVA, SEM, and more with interpretation.</p>
+      <div class="price-tag">₹2,000 – ₹10,000</div>
+      <button class="service-btn">Order Now</button>
+    </div>
+    <div class="service-card" style="--card-accent:#14b8a6" onclick="openOrderModal('Synopsis Writing')">
+      <div class="service-icon">📋</div>
+      <h3>Synopsis / Proposal Writing</h3>
+      <p>Research synopsis and project proposals for PhD admission, funding applications, and university submissions.</p>
+      <div class="price-tag">₹1,200 – ₹5,000</div>
+      <button class="service-btn">Order Now</button>
+    </div>
+    <div class="service-card" style="--card-accent:#6366f1" onclick="openOrderModal('Translation Services')">
+      <div class="service-icon">🌐</div>
+      <h3>Translation Services</h3>
+      <p>Academic translation between Hindi, English, and regional languages. Technical and domain-specific vocabulary maintained.</p>
+      <div class="price-tag">₹300 – ₹2,000</div>
+      <button class="service-btn">Order Now</button>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section section-alt" id="pricing">
+  <div class="section-header">
+    <div class="section-tag">Transparent Pricing</div>
+    <h2>Simple, Honest Pricing</h2>
+    <p>No hidden charges. Pay only for what you need. All prices in INR.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-icon">🔍</div>
+      <h3>Plagiarism Check</h3>
+      <div class="pricing-amount"><sub>₹</sub>50</div>
+      <div class="pricing-per">per file</div>
+      <ul class="pricing-features">
+        <li>Turnitin / iThenticate report</li>
+        <li>Similarity % per chapter</li>
+        <li>PDF report delivery</li>
+        <li>Result in 2–4 hours</li>
+      </ul>
+      <button class="pricing-cta" onclick="openOrderModal('Plagiarism Check')">Order Now</button>
+    </div>
+    <div class="pricing-card featured">
+      <div class="popular-badge">Best Value</div>
+      <div class="pricing-icon">📝</div>
+      <h3>Thesis Writing</h3>
+      <div class="pricing-amount"><sub>₹</sub>6,000</div>
+      <div class="pricing-per">starting price (chapter-wise)</div>
+      <ul class="pricing-features">
+        <li>Full / partial thesis</li>
+        <li>100% plagiarism free</li>
+        <li>Unlimited revisions</li>
+        <li>Turnitin report included</li>
+        <li>2 weeks – 2 months delivery</li>
+        <li>Expert PhD writers</li>
+      </ul>
+      <button class="pricing-cta" onclick="openOrderModal('Thesis Writing')">Order Now</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-icon">🤖</div>
+      <h3>AI Humanizer</h3>
+      <div class="pricing-amount"><sub>₹</sub>100</div>
+      <div class="pricing-per">per file</div>
+      <ul class="pricing-features">
+        <li>Bypasses GPTZero & Turnitin AI</li>
+        <li>Maintains original meaning</li>
+        <li>Same-day delivery</li>
+        <li>Any subject / domain</li>
+      </ul>
+      <button class="pricing-cta" onclick="openOrderModal('AI Humanizer')">Order Now</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-icon">📄</div>
+      <h3>Research Paper</h3>
+      <div class="pricing-amount"><sub>₹</sub>2,500</div>
+      <div class="pricing-per">starting price</div>
+      <ul class="pricing-features">
+        <li>Journal-ready format</li>
+        <li>Scopus / UGC eligible</li>
+        <li>Proper citations & references</li>
+        <li>Abstract + full paper</li>
+      </ul>
+      <button class="pricing-cta" onclick="openOrderModal('Research Paper Writing')">Order Now</button>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="section" id="how">
+  <div class="section-header">
+    <div class="section-tag">Process</div>
+    <h2>How It Works</h2>
+    <p>Simple 4-step process to get your work done professionally.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Choose Service</h4>
+      <p>Select the service you need and fill out the order form with your requirements.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Make Payment</h4>
+      <p>Pay via UPI to our number. Send the screenshot as confirmation.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>We Work on It</h4>
+      <p>Our expert team begins work immediately after payment confirmation.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Receive Delivery</h4>
+      <p>Get your completed work delivered via email or WhatsApp with full support.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Payment Section -->
+<section class="section section-alt" id="payment">
+  <div class="section-header">
+    <div class="section-tag">Payment</div>
+    <h2>Pay via UPI</h2>
+    <p>Quick, safe, and instant UPI payment. No extra charges.</p>
+  </div>
+  <div class="payment-box">
+    <div class="upi-icon">💳</div>
+    <h3>Pay Directly via UPI</h3>
+    <p>Use any UPI app — GPay, PhonePe, Paytm, BHIM, or your bank app.</p>
+    <div class="upi-id-display" id="upiDisplay">najarzain5-4@okicici</div>
+    <div class="upi-note">📞 Pay to UPI or call/WhatsApp: <strong>+91 90186 20566</strong></div>
+    <ul class="payment-steps-list">
+      <li><span class="icon">📱</span><span>Open your UPI app (GPay / PhonePe / Paytm)</span></li>
+      <li><span class="icon">🔍</span><span>Search by mobile number or UPI ID above</span></li>
+      <li><span class="icon">💰</span><span>Enter the exact amount for your service</span></li>
+      <li><span class="icon">📸</span><span>Take a screenshot of the payment confirmation</span></li>
+      <li><span class="icon">📩</span><span>Send screenshot + Order ID via WhatsApp or email</span></li>
+      <li><span class="icon">✅</span><span>We'll confirm and begin work within 2 hours</span></li>
+    </ul>
+    <button class="submit-btn" onclick="openPaymentModal()" style="margin-top:20px">View Payment Details</button>
+  </div>
+</section>
+
+<!-- Order Form -->
+<section class="section order-section" id="order">
+  <div class="section-header">
+    <div class="section-tag">Place Order</div>
+    <h2>Place Your Order</h2>
+    <p>Fill in the form below and we'll get back to you within 2 hours with a confirmation and payment link.</p>
+  </div>
+  <div class="order-form-card">
+    <form id="orderForm" onsubmit="submitOrder(event)">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="fullName">Full Name *</label>
+          <input type="text" id="fullName" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">WhatsApp Number *</label>
+          <input type="tel" id="phone" placeholder="+91 XXXXXXXXXX" required />
+        </div>
+        <div class="form-group">
+          <label for="service">Service Required *</label>
+          <select id="service" required>
+            <option value="">-- Select a Service --</option>
+            <option value="Plagiarism Check – ₹50/file">Plagiarism Check – ₹50/file</option>
+            <option value="Thesis Writing – ₹6,000–₹40,000">Thesis Writing – ₹6,000–₹40,000</option>
+            <option value="AI Humanizer – ₹100/file">AI Humanizer – ₹100/file</option>
+            <option value="Proofreading & Editing – ₹500–₹3,000">Proofreading & Editing – ₹500–₹3,000</option>
+            <option value="Research Paper Writing – ₹2,500–₹12,000">Research Paper Writing – ₹2,500–₹12,000</option>
+            <option value="Literature Review – ₹1,500–₹8,000">Literature Review – ₹1,500–₹8,000</option>
+            <option value="Statistical Analysis – ₹2,000–₹10,000">Statistical Analysis – ₹2,000–₹10,000</option>
+            <option value="Synopsis / Proposal Writing – ₹1,200–₹5,000">Synopsis / Proposal Writing – ₹1,200–₹5,000</option>
+            <option value="Translation Services – ₹300–₹2,000">Translation Services – ₹300–₹2,000</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject / Discipline *</label>
+          <input type="text" id="subject" placeholder="e.g., Computer Science, History" required />
+        </div>
+        <div class="form-group">
+          <label for="deadline">Deadline</label>
+          <input type="date" id="deadline" />
+        </div>
+        <div class="form-group full">
+          <label for="requirements">Special Requirements / Details *</label>
+          <textarea id="requirements" placeholder="Describe your requirements, word count, specific guidelines, university name, etc." required></textarea>
+        </div>
+        <div class="form-group full">
+          <label for="refNo">Payment Reference / UTR (if already paid)</label>
+          <input type="text" id="refNo" placeholder="UPI transaction ID or UTR number" />
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">🚀 Submit Order Request</button>
+      <p class="form-note">By submitting, you agree to our terms. We'll contact you within 2 hours on WhatsApp to confirm the order and share payment details.</p>
+    </form>
+  </div>
+</section>
+
+<!-- Track Order -->
+<section class="section" id="track">
+  <div class="section-header">
+    <div class="section-tag">Track</div>
+    <h2>Track Your Order</h2>
+    <p>Enter your order ID to check the current status of your work.</p>
+  </div>
+  <div class="track-box">
+    <div class="track-input-row">
+      <input type="text" id="trackId" placeholder="Enter Order ID (e.g., SA-2024-001)" />
+      <button class="track-btn" onclick="trackOrder()">Track</button>
+    </div>
+    <div class="track-result" id="trackResult">
+      <h4 style="margin-bottom:12px; font-size:1rem; color:var(--dark)">Order Status: <span style="color:var(--success)">In Progress</span></h4>
+      <div class="track-step">
+        <div class="track-dot"></div>
+        <div><strong>Order Received</strong><br><span style="font-size:.82rem;color:var(--muted)">Payment confirmed and order placed.</span></div>
+      </div>
+      <div class="track-step">
+        <div class="track-dot"></div>
+        <div><strong>Work In Progress</strong><br><span style="font-size:.82rem;color:var(--muted)">Our expert is working on your document.</span></div>
+      </div>
+      <div class="track-step">
+        <div class="track-dot pending"></div>
+        <div><strong>Quality Check</strong><br><span style="font-size:.82rem;color:var(--muted)">Pending — will be done before delivery.</span></div>
+      </div>
+      <div class="track-step">
+        <div class="track-dot pending"></div>
+        <div><strong>Delivered</strong><br><span style="font-size:.82rem;color:var(--muted)">Pending — will be sent to your email/WhatsApp.</span></div>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:.85rem;margin-top:16px">Don't have an order ID? <a href="#order" style="color:var(--primary);font-weight:600">Place an order first</a> or contact us on WhatsApp.</p>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section section-alt" id="testimonials">
+  <div class="section-header">
+    <div class="section-tag">Reviews</div>
+    <h2>What Our Scholars Say</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Got my plagiarism report within 3 hours. The breakdown by chapter was very helpful. Highly recommended for PhD scholars!"</p>
+      <div class="reviewer">
+        <div class="avatar">RK</div>
+        <div class="reviewer-info"><strong>Ramesh Kumar</strong><span>PhD Scholar, IIT Patna</span></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"The thesis writing service saved me so much time. Chapter 2 and 3 were written perfectly with proper citations. Worth every rupee!"</p>
+      <div class="reviewer">
+        <div class="avatar">PM</div>
+        <div class="reviewer-info"><strong>Priya Mehta</strong><span>M.Phil., Osmania University</span></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"AI Humanizer is a lifesaver. My content passed Turnitin AI detection check after using this service. Prompt and professional."</p>
+      <div class="reviewer">
+        <div class="avatar">AS</div>
+        <div class="reviewer-info"><strong>Arjun Singh</strong><span>Research Scholar, BHU</span></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★☆</div>
+      <p>"Statistical analysis using SPSS was done accurately with proper interpretation. The team was very patient with my queries."</p>
+      <div class="reviewer">
+        <div class="avatar">NT</div>
+        <div class="reviewer-info"><strong>Neha Tiwari</strong><span>PhD Student, Panjab University</span></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Literature review was comprehensive with 80+ recent papers. The research gap analysis was spot on. Fast delivery too!"</p>
+      <div class="reviewer">
+        <div class="avatar">MJ</div>
+        <div class="reviewer-info"><strong>Mohit Joshi</strong><span>Research Fellow, IGNOU</span></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Synopsis writing for my PhD admission was done flawlessly. Got selected in the first attempt. ScholarAid is the best!"</p>
+      <div class="reviewer">
+        <div class="avatar">DV</div>
+        <div class="reviewer-info"><strong>Deepa Varma</strong><span>PhD Aspirant, Kerala University</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-header">
+    <div class="section-tag">FAQ</div>
+    <h2>Frequently Asked Questions</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        How do I pay and confirm my order? <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer"><p>Pay via UPI to our registered number. After payment, send the screenshot along with your order details on WhatsApp. We'll confirm within 2 hours and begin work immediately.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Is confidentiality guaranteed? <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer"><p>Absolutely. Your documents and personal information are kept strictly confidential. We never share, publish, or reuse any client content. All interactions are private.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        What is the turnaround time for thesis writing? <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer"><p>Thesis writing timelines depend on the scope. A single chapter takes 5–10 days. A full thesis (5–6 chapters) typically takes 3–8 weeks. Express delivery is available for an additional charge.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Do you provide revisions? <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer"><p>Yes! We provide unlimited free revisions within 7 days of delivery for writing services. For plagiarism and AI humanizer services, revision is provided if the output doesn't meet the stated requirements.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Which plagiarism checker do you use? <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer"><p>We use Turnitin and iThenticate — the same tools used by most universities and journals. You'll receive the full similarity report in PDF format.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Can you help with journal paper submission? <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer"><p>Yes, we assist with formatting, cover letter writing, and guidance on journal selection (Scopus, WoS, UGC-CARE). However, the actual submission must be done by the author.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Is there a refund policy? <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer"><p>If work has not started, a full refund is provided. Once work begins, a partial refund (50%) is offered. After delivery, refunds are not applicable but free revisions are provided to meet your requirements.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Feedback & Grievance -->
+<section class="section section-alt" id="feedback">
+  <div class="section-header">
+    <div class="section-tag">Your Voice Matters</div>
+    <h2>Feedback & Grievance</h2>
+    <p>We take all feedback seriously to improve our services and resolve issues quickly.</p>
+  </div>
+  <div style="max-width:640px; margin:0 auto">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('feedback-tab', this)">💬 Feedback</button>
+      <button class="tab-btn" onclick="switchTab('grievance-tab', this)">⚠️ Grievance</button>
+      <button class="tab-btn" onclick="switchTab('suggestion-tab', this)">💡 Suggestion</button>
+    </div>
+
+    <!-- Feedback Tab -->
+    <div class="tab-pane active" id="feedback-tab">
+      <form onsubmit="submitFeedback(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Full name" />
+          </div>
+          <div class="form-group">
+            <label>Email / WhatsApp</label>
+            <input type="text" placeholder="Contact info" />
+          </div>
+          <div class="form-group">
+            <label>Service Used</label>
+            <select>
+              <option>-- Select --</option>
+              <option>Plagiarism Check</option>
+              <option>Thesis Writing</option>
+              <option>AI Humanizer</option>
+              <option>Research Paper</option>
+              <option>Literature Review</option>
+              <option>Statistical Analysis</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Overall Experience</label>
+            <div class="rating-stars" id="ratingStars">
+              <span onclick="setRating(1)">★</span>
+              <span onclick="setRating(2)">★</span>
+              <span onclick="setRating(3)">★</span>
+              <span onclick="setRating(4)">★</span>
+              <span onclick="setRating(5)">★</span>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label>Your Feedback</label>
+            <textarea placeholder="Share your experience with our service..."></textarea>
+          </div>
+          <div class="form-group full">
+            <label>Would you recommend us?</label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="recommend" value="yes" /> Yes, definitely!</label>
+              <label class="radio-label"><input type="radio" name="recommend" value="maybe" /> Maybe</label>
+              <label class="radio-label"><input type="radio" name="recommend" value="no" /> No</label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn">Submit Feedback</button>
+      </form>
+    </div>
+
+    <!-- Grievance Tab -->
+    <div class="tab-pane" id="grievance-tab">
+      <form onsubmit="submitGrievance(event)">
+        <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:.88rem;color:#991b1b;">
+          ⚠️ We take grievances seriously. All complaints are addressed within <strong>48 hours</strong>. Please provide your Order ID for faster resolution.
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" placeholder="Full name" required />
+          </div>
+          <div class="form-group">
+            <label>Contact (Email/WhatsApp) *</label>
+            <input type="text" placeholder="Your contact info" required />
+          </div>
+          <div class="form-group">
+            <label>Order ID *</label>
+            <input type="text" placeholder="e.g., SA-2024-001" required />
+          </div>
+          <div class="form-group">
+            <label>Issue Type *</label>
+            <select required>
+              <option value="">-- Select --</option>
+              <option>Delayed Delivery</option>
+              <option>Quality Not as Expected</option>
+              <option>Payment Issue</option>
+              <option>Plagiarism in Delivered Work</option>
+              <option>Miscommunication</option>
+              <option>Refund Request</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Describe Your Issue *</label>
+            <textarea placeholder="Please describe the issue in detail. The more specific you are, the faster we can resolve it..." required></textarea>
+          </div>
+          <div class="form-group full">
+            <label>Expected Resolution</label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="resolution" /> Redo the Work</label>
+              <label class="radio-label"><input type="radio" name="resolution" /> Partial Refund</label>
+              <label class="radio-label"><input type="radio" name="resolution" /> Full Refund</label>
+              <label class="radio-label"><input type="radio" name="resolution" /> Apology & Explanation</label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn" style="background:var(--danger)">🚨 Submit Grievance</button>
+      </form>
+    </div>
+
+    <!-- Suggestion Tab -->
+    <div class="tab-pane" id="suggestion-tab">
+      <form onsubmit="submitSuggestion(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Name (Optional)</label>
+            <input type="text" placeholder="Anonymous is fine too" />
+          </div>
+          <div class="form-group">
+            <label>Email (Optional)</label>
+            <input type="email" placeholder="For follow-up response" />
+          </div>
+          <div class="form-group full">
+            <label>Suggestion Category</label>
+            <select>
+              <option>New Service Idea</option>
+              <option>Pricing Feedback</option>
+              <option>Website Improvement</option>
+              <option>Process Improvement</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Your Suggestion *</label>
+            <textarea placeholder="What would you like to see improved or added? Your suggestions help us serve you better!" required></textarea>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn" style="background:var(--success)">💡 Submit Suggestion</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="nav-logo">Scholar<span>Aid</span></span>
+      <p>Professional academic support services for PhD scholars, postgraduate students, and researchers across India. Confidential, affordable, and reliable.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#order">Plagiarism Check</a></li>
+        <li><a href="#order">Thesis Writing</a></li>
+        <li><a href="#order">AI Humanizer</a></li>
+        <li><a href="#order">Research Papers</a></li>
+        <li><a href="#order">Literature Review</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#payment">Payment</a></li>
+        <li><a href="#track">Track Order</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#feedback">Grievance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+919018620566">📱 +91 90186 20566</a></li>
+        <li><a href="https://wa.me/919018620566">💬 WhatsApp Us</a></li>
+        <li><a href="#">⏰ Mon–Sat, 9AM–9PM</a></li>
+        <li><a href="#">📍 India</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Najar and Co. All rights reserved. | Confidential Academic Support Services</p>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <span id="toastIcon">✅</span>
+  <span id="toastMsg">Success!</span>
+</div>
+
+<!-- Payment Modal -->
+<div class="modal-overlay" id="paymentModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closePaymentModal()">×</button>
+    <h3>Payment Details</h3>
+    <p>Scan QR or use UPI ID below to make payment.</p>
+    <div class="qr-placeholder">
+      <span>📱</span>
+      <div>QR Code<br><small>(Will be added soon)</small></div>
+    </div>
+    <div class="modal-upi" id="modalUpiId">najarzain5-4@okicici</div>
+    <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px">After payment, send screenshot on WhatsApp with your Order ID for confirmation.</p>
+    <button class="copy-btn" onclick="copyUpi()">📋 Copy UPI ID</button>
+  </div>
+</div>
+
+<!-- Order Quick Modal -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOrderModal()">×</button>
+    <h3 id="orderModalTitle">Place Order</h3>
+    <p>Fill the full form below or contact us directly on WhatsApp for a quick quote.</p>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <button class="submit-btn" onclick="closeOrderModal();scrollToOrder()">📝 Fill Order Form</button>
+      <button class="submit-btn" style="background:var(--success)" onclick="openWhatsApp()">💬 Chat on WhatsApp</button>
+      <button class="submit-btn" style="background:var(--secondary)" onclick="closeOrderModal();openPaymentModal()">💳 Payment Details</button>
+    </div>
+  </div>
+</div>
+
+<!-- WhatsApp Float -->
+<button class="whatsapp-float" onclick="openWhatsApp()" title="Chat on WhatsApp">💬</button>
+
+<script>
+  // ── UTILS ──
+  function showToast(msg, icon = '✅') {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    document.getElementById('toastIcon').textContent = icon;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  // ── MOBILE MENU ──
+  function toggleMobileMenu() {
+    const links = document.querySelector('.nav-links');
+    if (links.style.display === 'flex') {
+      links.style.display = 'none';
+    } else {
+      links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#fff;padding:20px 5%;border-bottom:1px solid var(--border);gap:16px;z-index:99';
+    }
+  }
+
+  // ── SCROLL ──
+  function scrollToOrder() {
+    document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ── FAQ ──
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── TABS ──
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // ── RATING STARS ──
+  let currentRating = 0;
+  function setRating(n) {
+    currentRating = n;
+    const stars = document.querySelectorAll('#ratingStars span');
+    stars.forEach((s, i) => {
+      s.style.color = i < n ? '#f59e0b' : '#cbd5e1';
+      s.classList.toggle('selected', i < n);
+    });
+  }
+
+  // ── PAYMENT MODAL ──
+  function openPaymentModal() {
+    document.getElementById('paymentModal').classList.add('open');
+  }
+  function closePaymentModal() {
+    document.getElementById('paymentModal').classList.remove('open');
+  }
+  function copyUpi() {
+    const upi = document.getElementById('modalUpiId').textContent;
+    if (upi.includes('Coming Soon')) {
+      showToast('UPI ID will be updated soon! Contact via WhatsApp.', '📱');
+    } else {
+      navigator.clipboard.writeText(upi).then(() => showToast('UPI ID copied to clipboard!'));
+    }
+  }
+
+  // ── ORDER MODAL ──
+  function openOrderModal(service) {
+    document.getElementById('orderModalTitle').textContent = 'Order: ' + service;
+    document.getElementById('orderModal').classList.add('open');
+    // Pre-select service in the form
+    const sel = document.getElementById('service');
+    for (let opt of sel.options) {
+      if (opt.value.startsWith(service)) { sel.value = opt.value; break; }
+    }
+  }
+  function closeOrderModal() {
+    document.getElementById('orderModal').classList.remove('open');
+  }
+
+  // Close modals on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('open');
+    });
+  });
+
+  // ── WHATSAPP ──
+  function openWhatsApp() {
+    const msg = encodeURIComponent("Hello! I need help with an academic service. Please guide me.");
+    window.open('https://wa.me/919018620566?text=' + msg, '_blank');
+    showToast('Opening WhatsApp...', '💬');
+  }
+
+  // ── FORMS ──
+  function submitOrder(e) {
+    e.preventDefault();
+    const name = document.getElementById('fullName').value;
+    showToast(`Order submitted, ${name.split(' ')[0]}! We'll contact you within 2 hours. 🎉`);
+    e.target.reset();
+    // Generate a fake order ID for UX
+    const orderId = 'SA-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random()*9000)+1000);
+    setTimeout(() => showToast(`Your Order ID: ${orderId} — Save this!`, '🆔'), 4000);
+  }
+
+  function submitFeedback(e) {
+    e.preventDefault();
+    showToast('Thank you for your feedback! We really appreciate it. 💙');
+    e.target.reset();
+    setRating(0);
+    document.querySelectorAll('#ratingStars span').forEach(s => s.style.color = '');
+  }
+
+  function submitGrievance(e) {
+    e.preventDefault();
+    showToast('Grievance submitted! We will resolve it within 48 hours.', '⚠️');
+    e.target.reset();
+  }
+
+  function submitSuggestion(e) {
+    e.preventDefault();
+    showToast('Suggestion received! Thank you for helping us improve. 💡');
+    e.target.reset();
+  }
+
+  // ── TRACK ORDER ──
+  function trackOrder() {
+    const id = document.getElementById('trackId').value.trim();
+    if (!id) { showToast('Please enter an Order ID.', '❌'); return; }
+    const result = document.getElementById('trackResult');
+    result.style.display = 'block';
+    showToast(`Showing status for: ${id}`, '🔍');
+  }
+
+  // ── ANIMATE ON SCROLL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .pricing-card, .testimonial-card, .step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
