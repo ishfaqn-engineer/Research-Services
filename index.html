@@ -3,7 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ScholarAid – Research & Academic Services</title>
+  <title>ScholarAid – PhD & Research Academic Services India | Plagiarism, Thesis, Statistical Analysis</title>
+  <meta name="description" content="ScholarAid offers professional academic support for PhD scholars across India — plagiarism checks, thesis writing, statistical analysis, literature review & more. Starting ₹50." />
+  <meta name="keywords" content="plagiarism check India, thesis writing service, PhD research help, statistical analysis SPSS, literature review, AI humanizer, research paper writing" />
+  <meta name="robots" content="index, follow" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="ScholarAid – Research & Academic Services for PhD Scholars" />
+  <meta property="og:description" content="Trusted by 500+ scholars. Plagiarism checks from ₹50, thesis writing, statistical analysis & more. Professional, confidential & affordable." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ishfaqn-engineer.github.io/Research-Services/" />
+  <meta property="og:image" content="https://ishfaqn-engineer.github.io/Research-Services/og-image.png" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ScholarAid – Research & Academic Services" />
+  <meta name="twitter:description" content="Professional academic support for PhD scholars in India. Starting ₹50." />
   <style>
     :root {
       --primary: #4f46e5;
@@ -25,17 +38,32 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
 
+    /* ── ANNOUNCEMENT ── */
+    .announcement {
+      background: var(--primary); color: #fff;
+      text-align: center; padding: 10px 5%;
+      font-size: .88rem; font-weight: 500;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+    }
+    .announcement strong { color: var(--accent); }
+    .announce-close {
+      background: none; border: none; color: rgba(255,255,255,.7);
+      cursor: pointer; font-size: 1.1rem; line-height: 1; flex-shrink: 0;
+      padding: 0 4px; transition: color .2s;
+    }
+    .announce-close:hover { color: #fff; }
+
     /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,0.92);
+      background: rgba(255,255,255,0.97);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 5%;
       display: flex; align-items: center; justify-content: space-between;
       height: 64px;
     }
-    .nav-logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+    .nav-logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; text-decoration: none; }
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 24px; list-style: none; }
     .nav-links a { text-decoration: none; color: var(--muted); font-size: .92rem; font-weight: 500; transition: color .2s; }
@@ -46,7 +74,20 @@
       font-weight: 600; cursor: pointer; transition: background .2s;
     }
     .nav-cta:hover { background: var(--primary-dark); }
-    .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+    .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); background: none; border: none; }
+    /* Mobile nav drawer */
+    .mobile-nav {
+      display: none; flex-direction: column; gap: 0;
+      background: #fff; border-bottom: 1px solid var(--border);
+      padding: 8px 5%;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      text-decoration: none; color: var(--text); font-size: .95rem;
+      font-weight: 500; padding: 12px 0; border-bottom: 1px solid var(--border);
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav a:hover { color: var(--primary); }
 
     /* ── HERO ── */
     .hero {
@@ -98,6 +139,14 @@
     .section-header h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: var(--dark); margin-bottom: 12px; }
     .section-header p { color: var(--muted); max-width: 520px; margin: 0 auto; }
 
+    /* ── DISCLAIMER BANNER ── */
+    .disclaimer-banner {
+      background: #fffbeb; border: 1px solid #fde68a;
+      border-radius: 12px; padding: 16px 20px; margin: 0 5% 0;
+      font-size: .88rem; color: #92400e; line-height: 1.6;
+    }
+    .disclaimer-banner strong { color: #78350f; }
+
     /* ── SERVICES GRID ── */
     .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
     .service-card {
@@ -126,13 +175,43 @@
       font-weight: 600; cursor: pointer; transition: background .2s;
     }
     .service-btn:hover { background: var(--primary-dark); }
-
-    /* ── POPULAR BADGE ── */
     .popular-badge {
       position: absolute; top: 14px; right: 14px;
       background: var(--accent); color: #fff;
       padding: 3px 10px; border-radius: 50px; font-size: .72rem; font-weight: 700;
     }
+
+    /* ── PRICING TABLE ── */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
+    .pricing-card {
+      background: var(--card); border: 1.5px solid var(--border);
+      border-radius: var(--radius); padding: 28px 24px; text-align: center;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .pricing-card.featured {
+      border-color: var(--primary); background: #f5f3ff;
+      transform: scale(1.03);
+    }
+    .pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .pricing-card.featured:hover { transform: scale(1.03) translateY(-5px); }
+    .pricing-icon { font-size: 2.2rem; margin-bottom: 12px; }
+    .pricing-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: 8px; color: var(--dark); }
+    .pricing-amount { font-size: 2rem; font-weight: 900; color: var(--primary); }
+    .pricing-amount sub { font-size: .95rem; font-weight: 600; }
+    .pricing-per { color: var(--muted); font-size: .82rem; margin-bottom: 16px; }
+    .pricing-features { list-style: none; text-align: left; }
+    .pricing-features li {
+      padding: 5px 0; font-size: .85rem; color: var(--text);
+      display: flex; gap: 8px; align-items: center;
+    }
+    .pricing-features li::before { content: '✓'; color: var(--success); font-weight: 800; flex-shrink: 0; }
+    .pricing-cta {
+      display: block; width: 100%; margin-top: 20px;
+      padding: 10px; background: var(--primary); color: #fff;
+      border: none; border-radius: 10px; font-weight: 700;
+      font-size: .9rem; cursor: pointer; transition: background .2s;
+    }
+    .pricing-cta:hover { background: var(--primary-dark); }
 
     /* ── HOW IT WORKS ── */
     .steps { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; position: relative; }
@@ -174,11 +253,18 @@
     }
     .payment-steps-list li:last-child { border: none; }
     .payment-steps-list li span.icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+    .upi-btn {
+      display: inline-block; margin-top: 20px;
+      background: #25d366; color: #fff; text-decoration: none;
+      padding: 12px 28px; border-radius: 50px; font-weight: 700;
+      font-size: .95rem; transition: background .2s;
+    }
+    .upi-btn:hover { background: #1da851; }
 
     /* ── ORDER FORM ── */
     .order-section { background: linear-gradient(135deg, #f0f4ff 0%, #e0f7fa 100%); }
     .order-form-card {
-      max-width: 680px; margin: 0 auto;
+      max-width: 720px; margin: 0 auto;
       background: var(--card); border-radius: var(--radius);
       padding: 40px; box-shadow: var(--shadow); border: 1px solid var(--border);
     }
@@ -203,185 +289,9 @@
       cursor: pointer; transition: background .2s, transform .15s; margin-top: 8px;
     }
     .submit-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .submit-btn:disabled { background: var(--muted); cursor: not-allowed; transform: none; }
     .form-note { font-size: .82rem; color: var(--muted); text-align: center; margin-top: 12px; }
-
-    /* ── PRICING TABLE ── */
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
-    .pricing-card {
-      background: var(--card); border: 1.5px solid var(--border);
-      border-radius: var(--radius); padding: 32px 28px; text-align: center;
-      transition: transform .25s, box-shadow .25s;
-    }
-    .pricing-card.featured {
-      border-color: var(--primary); background: #f5f3ff;
-      transform: scale(1.03);
-    }
-    .pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-    .pricing-card.featured:hover { transform: scale(1.03) translateY(-5px); }
-    .pricing-icon { font-size: 2.5rem; margin-bottom: 16px; }
-    .pricing-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; color: var(--dark); }
-    .pricing-amount { font-size: 2.2rem; font-weight: 900; color: var(--primary); }
-    .pricing-amount sub { font-size: 1rem; font-weight: 600; }
-    .pricing-per { color: var(--muted); font-size: .85rem; margin-bottom: 20px; }
-    .pricing-features { list-style: none; text-align: left; }
-    .pricing-features li {
-      padding: 6px 0; font-size: .88rem; color: var(--text);
-      display: flex; gap: 8px; align-items: center;
-    }
-    .pricing-features li::before { content: '✓'; color: var(--success); font-weight: 800; flex-shrink: 0; }
-    .pricing-cta {
-      display: block; width: 100%; margin-top: 24px;
-      padding: 11px; background: var(--primary); color: #fff;
-      border: none; border-radius: 10px; font-weight: 700;
-      font-size: .95rem; cursor: pointer; transition: background .2s;
-    }
-    .pricing-cta:hover { background: var(--primary-dark); }
-
-    /* ── TESTIMONIALS ── */
-    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
-    .testimonial-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 24px;
-    }
-    .stars { color: var(--accent); font-size: 1rem; margin-bottom: 12px; }
-    .testimonial-card p { font-size: .92rem; color: var(--text); line-height: 1.7; font-style: italic; margin-bottom: 16px; }
-    .reviewer { display: flex; align-items: center; gap: 12px; }
-    .avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--primary); color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: .95rem; flex-shrink: 0;
-    }
-    .reviewer-info strong { display: block; font-size: .9rem; font-weight: 700; }
-    .reviewer-info span { font-size: .8rem; color: var(--muted); }
-
-    /* ── FEEDBACK & GRIEVANCE ── */
-    .tabs { display: flex; gap: 4px; background: #f1f5f9; border-radius: 12px; padding: 4px; margin-bottom: 32px; }
-    .tab-btn {
-      flex: 1; padding: 10px 16px; border: none; background: transparent;
-      border-radius: 9px; font-size: .9rem; font-weight: 600;
-      color: var(--muted); cursor: pointer; transition: all .2s;
-    }
-    .tab-btn.active { background: var(--card); color: var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
-    .tab-pane { display: none; }
-    .tab-pane.active { display: block; }
-    .radio-group { display: flex; gap: 16px; flex-wrap: wrap; }
-    .radio-label {
-      display: flex; align-items: center; gap: 8px;
-      cursor: pointer; font-size: .9rem; font-weight: 500;
-    }
-    .rating-stars { display: flex; gap: 6px; font-size: 2rem; cursor: pointer; }
-    .rating-stars span { transition: transform .15s; }
-    .rating-stars span:hover, .rating-stars span.selected { transform: scale(1.2); }
-
-    /* ── FAQ ── */
-    .faq-list { max-width: 720px; margin: 0 auto; }
-    .faq-item {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; margin-bottom: 12px; overflow: hidden;
-    }
-    .faq-question {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 18px 22px; cursor: pointer; font-weight: 600; font-size: .95rem;
-      transition: background .2s;
-    }
-    .faq-question:hover { background: #f8fafc; }
-    .faq-icon { font-size: 1.2rem; color: var(--primary); transition: transform .25s; flex-shrink: 0; }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .25s; padding: 0 22px; }
-    .faq-answer p { padding-bottom: 18px; color: var(--muted); line-height: 1.7; font-size: .92rem; }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-item.open .faq-answer { max-height: 300px; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--dark); color: rgba(255,255,255,.75);
-      padding: 56px 5% 28px;
-    }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-    .footer-brand .nav-logo { font-size: 1.5rem; color: #fff; margin-bottom: 12px; display: block; }
-    .footer-brand p { font-size: .9rem; line-height: 1.7; }
-    .footer-col h4 { color: #fff; font-weight: 700; margin-bottom: 14px; font-size: .95rem; }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 8px; }
-    .footer-col ul li a { color: rgba(255,255,255,.6); text-decoration: none; font-size: .88rem; transition: color .2s; }
-    .footer-col ul li a:hover { color: #fff; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; text-align: center; font-size: .84rem; }
-
-    /* ── TOAST ── */
-    .toast {
-      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
-      background: var(--dark); color: #fff; padding: 14px 22px;
-      border-radius: 12px; font-size: .92rem; font-weight: 500;
-      box-shadow: 0 8px 32px rgba(0,0,0,.25); display: none;
-      align-items: center; gap: 10px;
-      animation: slideUp .3s ease;
-    }
-    .toast.show { display: flex; }
-    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-    /* ── MODAL ── */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(15,23,42,.55);
-      backdrop-filter: blur(4px); z-index: 200;
-      display: none; align-items: center; justify-content: center; padding: 20px;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal {
-      background: var(--card); border-radius: var(--radius);
-      padding: 36px; max-width: 480px; width: 100%;
-      box-shadow: 0 24px 64px rgba(0,0,0,.25);
-      animation: popIn .25s ease;
-    }
-    @keyframes popIn { from { transform: scale(.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .modal h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
-    .modal p { color: var(--muted); font-size: .9rem; margin-bottom: 20px; }
-    .modal-close {
-      float: right; background: none; border: none;
-      font-size: 1.4rem; cursor: pointer; color: var(--muted); margin-top: -8px;
-    }
-    .qr-placeholder {
-      width: 160px; height: 160px; margin: 0 auto 16px;
-      background: #f1f5f9; border: 2px dashed var(--border);
-      border-radius: 12px; display: flex; align-items: center;
-      justify-content: center; flex-direction: column; gap: 8px;
-      font-size: .82rem; color: var(--muted); text-align: center;
-    }
-    .qr-placeholder span { font-size: 2.5rem; }
-    .modal-upi {
-      background: #ede9fe; color: var(--primary); text-align: center;
-      padding: 12px; border-radius: 10px; font-weight: 800; font-size: 1.1rem;
-      letter-spacing: .5px; margin-bottom: 16px;
-    }
-    .copy-btn {
-      display: block; width: 100%; padding: 10px;
-      background: var(--primary); color: #fff; border: none;
-      border-radius: 10px; font-weight: 700; cursor: pointer; font-size: .92rem;
-    }
-
-    /* ── WHATSAPP FLOAT ── */
-    .whatsapp-float {
-      position: fixed; bottom: 28px; left: 28px; z-index: 150;
-      background: #25d366; color: #fff; border: none;
-      width: 56px; height: 56px; border-radius: 50%;
-      font-size: 1.6rem; cursor: pointer; box-shadow: 0 4px 20px rgba(37,211,102,.4);
-      display: flex; align-items: center; justify-content: center;
-      transition: transform .2s;
-    }
-    .whatsapp-float:hover { transform: scale(1.1); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: block; }
-      .form-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .steps { flex-direction: column; align-items: center; }
-      .step:not(:last-child)::after { content: '↓'; right: auto; top: auto; }
-    }
-    @media (max-width: 480px) {
-      .footer-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 24px; }
-    }
+    .file-note { font-size: .78rem; color: var(--muted); margin-top: 4px; }
 
     /* ── TRACK ORDER ── */
     .track-box {
@@ -405,28 +315,190 @@
       background: var(--success); flex-shrink: 0; margin-top: 5px;
     }
     .track-dot.pending { background: var(--border); }
+    .track-info-box {
+      background: #f0f9ff; border: 1px solid #bae6fd;
+      border-radius: 12px; padding: 20px; margin-top: 20px;
+      font-size: .9rem; color: #0c4a6e; line-height: 1.7; text-align: left;
+    }
 
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .testimonial-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+    }
+    .stars { color: var(--accent); font-size: 1rem; margin-bottom: 12px; }
+    .testimonial-card p { font-size: .92rem; color: var(--text); line-height: 1.7; font-style: italic; margin-bottom: 16px; }
+    .reviewer { display: flex; align-items: center; gap: 12px; }
+    .avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .95rem; flex-shrink: 0;
+    }
+    .reviewer-info strong { display: block; font-size: .9rem; font-weight: 700; }
+    .reviewer-info span { font-size: .8rem; color: var(--muted); }
+    .review-note { text-align: center; margin-top: 20px; font-size: .84rem; color: var(--muted); }
+
+    /* ── FEEDBACK & GRIEVANCE ── */
+    .tabs { display: flex; gap: 4px; background: #f1f5f9; border-radius: 12px; padding: 4px; margin-bottom: 32px; }
+    .tab-btn {
+      flex: 1; padding: 10px 16px; border: none; background: transparent;
+      border-radius: 9px; font-size: .9rem; font-weight: 600;
+      color: var(--muted); cursor: pointer; transition: all .2s;
+    }
+    .tab-btn.active { background: var(--card); color: var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+    .radio-group { display: flex; gap: 16px; flex-wrap: wrap; }
+    .radio-label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: .9rem; font-weight: 500; }
+    .rating-stars { display: flex; gap: 6px; font-size: 2rem; cursor: pointer; }
+    .rating-stars span { transition: transform .15s; color: var(--border); }
+    .rating-stars span.selected, .rating-stars span:hover { color: var(--accent); transform: scale(1.2); }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; margin-bottom: 12px; overflow: hidden;
+    }
+    .faq-question {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 22px; cursor: pointer; font-weight: 600; font-size: .95rem;
+      transition: background .2s;
+    }
+    .faq-question:hover { background: #f8fafc; }
+    .faq-icon { font-size: 1.2rem; color: var(--primary); transition: transform .25s; flex-shrink: 0; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .25s; padding: 0 22px; }
+    .faq-answer p { padding-bottom: 18px; color: var(--muted); line-height: 1.7; font-size: .92rem; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-item.open .faq-answer { max-height: 400px; }
+
+    /* ── TERMS MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(15,23,42,.55);
+      backdrop-filter: blur(4px); z-index: 200;
+      display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--card); border-radius: var(--radius);
+      padding: 36px; max-width: 520px; width: 100%;
+      box-shadow: 0 24px 64px rgba(0,0,0,.25);
+      animation: popIn .25s ease; max-height: 85vh; overflow-y: auto;
+    }
+    @keyframes popIn { from { transform: scale(.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .modal h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
+    .modal p { color: var(--muted); font-size: .9rem; margin-bottom: 16px; line-height: 1.7; }
+    .modal h4 { font-size: 1rem; font-weight: 700; margin: 16px 0 6px; color: var(--dark); }
+    .modal-close {
+      float: right; background: none; border: none;
+      font-size: 1.4rem; cursor: pointer; color: var(--muted); margin-top: -8px;
+    }
+    .qr-placeholder {
+      width: 180px; height: 180px; margin: 0 auto 16px;
+      background: #f1f5f9; border: 2px dashed var(--border);
+      border-radius: 12px; display: flex; align-items: center;
+      justify-content: center; flex-direction: column; gap: 8px;
+      font-size: .82rem; color: var(--muted); text-align: center;
+    }
+    .qr-placeholder span { font-size: 2.5rem; }
+    .modal-upi {
+      background: #ede9fe; color: var(--primary); text-align: center;
+      padding: 12px; border-radius: 10px; font-weight: 800; font-size: 1.1rem;
+      letter-spacing: .5px; margin-bottom: 16px;
+    }
+    .copy-btn {
+      display: block; width: 100%; padding: 10px;
+      background: var(--primary); color: #fff; border: none;
+      border-radius: 10px; font-weight: 700; cursor: pointer; font-size: .92rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.75);
+      padding: 56px 5% 28px;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand .nav-logo { font-size: 1.5rem; color: #fff; margin-bottom: 12px; display: block; }
+    .footer-brand p { font-size: .9rem; line-height: 1.7; }
+    .footer-col h4 { color: #fff; font-weight: 700; margin-bottom: 14px; font-size: .95rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a { color: rgba(255,255,255,.6); text-decoration: none; font-size: .88rem; transition: color .2s; }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: .84rem; }
+    .footer-bottom a { color: rgba(255,255,255,.5); text-decoration: none; }
+    .footer-bottom a:hover { color: #fff; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      background: var(--dark); color: #fff; padding: 14px 22px;
+      border-radius: 12px; font-size: .92rem; font-weight: 500;
+      box-shadow: 0 8px 32px rgba(0,0,0,.25); display: none;
+      align-items: center; gap: 10px;
+      animation: slideUp .3s ease;
+    }
+    .toast.show { display: flex; }
+    .toast.success { background: var(--success); }
+    .toast.error { background: var(--danger); }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    /* ── WHATSAPP FLOAT ── */
+    .whatsapp-float {
+      position: fixed; bottom: 28px; left: 28px; z-index: 150;
+      background: #25d366; color: #fff; border: none;
+      width: 56px; height: 56px; border-radius: 50%;
+      font-size: 1.6rem; cursor: pointer; box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .2s; text-decoration: none;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+
+    /* ── SECTION ALT ── */
     .section-alt { background: #f1f5f9; }
 
-    /* Announcement bar */
-    .announcement {
-      background: var(--primary); color: #fff;
-      text-align: center; padding: 10px 5%;
-      font-size: .88rem; font-weight: 500;
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: block; }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .steps { flex-direction: column; align-items: center; }
+      .step:not(:last-child)::after { content: '↓'; right: auto; top: auto; position: static; display: block; margin: 8px auto 0; }
     }
-    .announcement strong { color: var(--accent); }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+    /* ── SPINNER ── */
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .6s linear infinite; vertical-align: middle; margin-right: 8px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── FORM SUCCESS STATE ── */
+    .form-success {
+      text-align: center; padding: 40px 20px;
+      display: none;
+    }
+    .form-success .success-icon { font-size: 4rem; margin-bottom: 16px; }
+    .form-success h3 { font-size: 1.4rem; font-weight: 800; color: var(--success); margin-bottom: 8px; }
+    .form-success p { color: var(--muted); font-size: .95rem; line-height: 1.7; }
   </style>
 </head>
 <body>
 
 <!-- Announcement Bar -->
-<div class="announcement">
-  🎓 Exclusive for Research Scholars! <strong>First Plagiarism Check FREE</strong> on orders above ₹500. Limited offer!
+<div class="announcement" id="announcementBar">
+  <span>🎓 Exclusive for Research Scholars! <strong>First Plagiarism Check FREE</strong> on orders above ₹500. Limited offer!</span>
+  <button class="announce-close" onclick="document.getElementById('announcementBar').style.display='none'" aria-label="Close announcement">✕</button>
 </div>
 
 <!-- Nav -->
 <nav>
-  <div class="nav-logo">Scholar<span>Aid</span></div>
+  <a href="#home" class="nav-logo">Scholar<span>Aid</span></a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#pricing">Pricing</a></li>
@@ -436,14 +508,30 @@
     <li><a href="#feedback">Feedback</a></li>
   </ul>
   <button class="nav-cta" onclick="scrollToOrder()">Get Started</button>
-  <div class="hamburger" onclick="toggleMobileMenu()">☰</div>
+  <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Open menu">☰</button>
 </nav>
+
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#services" onclick="closeMobileMenu()">Services</a>
+  <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
+  <a href="#how" onclick="closeMobileMenu()">How It Works</a>
+  <a href="#order" onclick="closeMobileMenu()">Order Now</a>
+  <a href="#track" onclick="closeMobileMenu()">Track Order</a>
+  <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+  <a href="#feedback" onclick="closeMobileMenu()">Feedback</a>
+</div>
+
+<!-- Disclaimer Banner -->
+<div class="disclaimer-banner">
+  <strong>Important Notice:</strong> ScholarAid provides academic assistance, editing, and reference services intended to support research and learning. All services must be used in accordance with your institution's academic integrity policies. We do not condone academic misconduct. Clients are solely responsible for how they use the materials provided.
+</div>
 
 <!-- Hero -->
 <section class="hero" id="home">
-  <div class="hero-badge">✦ Trusted by 500+ Research Scholars</div>
+  <div class="hero-badge">✦ Trusted by 500+ Research Scholars Across India</div>
   <h1>Your Academic Success,<br>Our Mission</h1>
-  <p>Plagiarism checks, thesis writing, AI humanization & more — professional academic services at student-friendly prices.</p>
+  <p>Plagiarism checks, thesis assistance, research writing & more — professional academic support at student-friendly prices.</p>
   <div class="hero-btns">
     <button class="btn-white" onclick="scrollToOrder()">Place an Order</button>
     <button class="btn-outline-white" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">View Services</button>
@@ -474,15 +562,15 @@
     <div class="service-card" style="--card-accent:#06b6d4" onclick="openOrderModal('Thesis Writing')">
       <div class="popular-badge">Popular</div>
       <div class="service-icon">📝</div>
-      <h3>Thesis Writing</h3>
-      <p>Full or partial thesis writing — introduction, literature review, methodology, results & conclusion. Plagiarism-free guaranteed.</p>
+      <h3>Thesis Writing Assistance</h3>
+      <p>Full or partial thesis assistance — introduction, literature review, methodology, results & conclusion. Plagiarism-free guaranteed.</p>
       <div class="price-tag">₹6,000 – ₹40,000</div>
       <button class="service-btn">Order Now</button>
     </div>
     <div class="service-card" style="--card-accent:#f59e0b" onclick="openOrderModal('AI Humanizer')">
       <div class="service-icon">🤖</div>
       <h3>AI Humanizer</h3>
-      <p>Transform AI-generated text into natural, human-like writing that bypasses AI detection tools like GPTZero & Turnitin.</p>
+      <p>Transform AI-generated drafts into natural, human-like writing. Refines tone, clarity and flow.</p>
       <div class="price-tag">₹100 / file</div>
       <button class="service-btn">Order Now</button>
     </div>
@@ -555,7 +643,7 @@
     <div class="pricing-card featured">
       <div class="popular-badge">Best Value</div>
       <div class="pricing-icon">📝</div>
-      <h3>Thesis Writing</h3>
+      <h3>Thesis Assistance</h3>
       <div class="pricing-amount"><sub>₹</sub>6,000</div>
       <div class="pricing-per">starting price (chapter-wise)</div>
       <ul class="pricing-features">
@@ -574,7 +662,7 @@
       <div class="pricing-amount"><sub>₹</sub>100</div>
       <div class="pricing-per">per file</div>
       <ul class="pricing-features">
-        <li>Bypasses GPTZero & Turnitin AI</li>
+        <li>Improves natural flow & tone</li>
         <li>Maintains original meaning</li>
         <li>Same-day delivery</li>
         <li>Any subject / domain</li>
@@ -593,6 +681,71 @@
         <li>Abstract + full paper</li>
       </ul>
       <button class="pricing-cta" onclick="openOrderModal('Research Paper Writing')">Order Now</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-icon">📚</div>
+      <h3>Literature Review</h3>
+      <div class="pricing-amount"><sub>₹</sub>1,500</div>
+      <div class="pricing-per">starting price</div>
+      <ul class="pricing-features">
+        <li>50–150 recent sources</li>
+        <li>Thematic synthesis</li>
+        <li>Research gap analysis</li>
+        <li>Proper citations</li>
+      </ul>
+      <button class="pricing-cta" onclick="openOrderModal('Literature Review')">Order Now</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-icon">📊</div>
+      <h3>Statistical Analysis</h3>
+      <div class="pricing-amount"><sub>₹</sub>2,000</div>
+      <div class="pricing-per">starting price</div>
+      <ul class="pricing-features">
+        <li>SPSS, R, Python</li>
+        <li>Regression, ANOVA, SEM</li>
+        <li>Full interpretation report</li>
+        <li>Graphs & tables included</li>
+      </ul>
+      <button class="pricing-cta" onclick="openOrderModal('Statistical Analysis')">Order Now</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-icon">✏️</div>
+      <h3>Proofreading</h3>
+      <div class="pricing-amount"><sub>₹</sub>500</div>
+      <div class="pricing-per">starting price</div>
+      <ul class="pricing-features">
+        <li>Grammar & syntax fix</li>
+        <li>APA/MLA/Chicago style</li>
+        <li>Clarity & flow improvement</li>
+        <li>Fast turnaround</li>
+      </ul>
+      <button class="pricing-cta" onclick="openOrderModal('Proofreading & Editing')">Order Now</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-icon">📋</div>
+      <h3>Synopsis Writing</h3>
+      <div class="pricing-amount"><sub>₹</sub>1,200</div>
+      <div class="pricing-per">starting price</div>
+      <ul class="pricing-features">
+        <li>PhD admission ready</li>
+        <li>Funding proposals</li>
+        <li>University submission format</li>
+        <li>Expert guidance</li>
+      </ul>
+      <button class="pricing-cta" onclick="openOrderModal('Synopsis Writing')">Order Now</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-icon">🌐</div>
+      <h3>Translation</h3>
+      <div class="pricing-amount"><sub>₹</sub>300</div>
+      <div class="pricing-per">starting price</div>
+      <ul class="pricing-features">
+        <li>Hindi ↔ English</li>
+        <li>Regional languages</li>
+        <li>Domain-specific accuracy</li>
+        <li>Academic tone maintained</li>
+      </ul>
+      <button class="pricing-cta" onclick="openOrderModal('Translation Services')">Order Now</button>
     </div>
   </div>
 </section>
@@ -640,7 +793,7 @@
     <h3>Pay Directly via UPI</h3>
     <p>Use any UPI app — GPay, PhonePe, Paytm, BHIM, or your bank app.</p>
     <div class="upi-id-display" id="upiDisplay">najarzain5-4@okicici</div>
-    <div class="upi-note">📞 Pay to UPI or call/WhatsApp: <strong>+91 90186 20566</strong></div>
+    <div class="upi-note">📞 Call/WhatsApp: <strong>+91 90186 20566</strong> &nbsp;|&nbsp; 📧 <strong>scholaraid.help@gmail.com</strong></div>
     <ul class="payment-steps-list">
       <li><span class="icon">📱</span><span>Open your UPI app (GPay / PhonePe / Paytm)</span></li>
       <li><span class="icon">🔍</span><span>Search by mobile number or UPI ID above</span></li>
@@ -649,7 +802,11 @@
       <li><span class="icon">📩</span><span>Send screenshot + Order ID via WhatsApp or email</span></li>
       <li><span class="icon">✅</span><span>We'll confirm and begin work within 2 hours</span></li>
     </ul>
-    <button class="submit-btn" onclick="openPaymentModal()" style="margin-top:20px">View Payment Details</button>
+    <a class="upi-btn" href="upi://pay?pa=najarzain5-4@okicici&pn=ScholarAid&cu=INR" onclick="showToast('Opening UPI app…','✅')">
+      📲 Pay Now via UPI App
+    </a>
+    <br>
+    <button class="submit-btn" onclick="openPaymentModal()" style="margin-top:16px">View Payment QR & Details</button>
   </div>
 </section>
 
@@ -658,26 +815,34 @@
   <div class="section-header">
     <div class="section-tag">Place Order</div>
     <h2>Place Your Order</h2>
-    <p>Fill in the form below and we'll get back to you within 2 hours with a confirmation and payment link.</p>
+    <p>Fill in the form below and we'll get back to you within 2 hours.</p>
   </div>
   <div class="order-form-card">
-    <form id="orderForm" onsubmit="submitOrder(event)">
+    <!-- Success State -->
+    <div class="form-success" id="orderSuccess">
+      <div class="success-icon">🎉</div>
+      <h3>Order Received!</h3>
+      <p>Thank you! We've received your request. Our team will contact you on WhatsApp within <strong>2 hours</strong> to confirm your order and share payment details.</p>
+      <p style="margin-top:12px">Need urgent help? <a href="https://wa.me/919018620566" style="color:var(--primary);font-weight:600">Chat on WhatsApp</a></p>
+    </div>
+    <!-- Form -->
+    <form id="orderForm" action="https://formspree.io/f/xnndpblg" method="POST" onsubmit="handleOrderSubmit(event)">
       <div class="form-grid">
         <div class="form-group">
           <label for="fullName">Full Name *</label>
-          <input type="text" id="fullName" placeholder="Your full name" required />
+          <input type="text" id="fullName" name="fullName" placeholder="Your full name" required />
         </div>
         <div class="form-group">
           <label for="email">Email Address *</label>
-          <input type="email" id="email" placeholder="your@email.com" required />
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
         </div>
         <div class="form-group">
           <label for="phone">WhatsApp Number *</label>
-          <input type="tel" id="phone" placeholder="+91 XXXXXXXXXX" required />
+          <input type="tel" id="phone" name="phone" placeholder="+91 XXXXXXXXXX" required />
         </div>
         <div class="form-group">
           <label for="service">Service Required *</label>
-          <select id="service" required>
+          <select id="service" name="service" required>
             <option value="">-- Select a Service --</option>
             <option value="Plagiarism Check – ₹50/file">Plagiarism Check – ₹50/file</option>
             <option value="Thesis Writing – ₹6,000–₹40,000">Thesis Writing – ₹6,000–₹40,000</option>
@@ -692,23 +857,28 @@
         </div>
         <div class="form-group">
           <label for="subject">Subject / Discipline *</label>
-          <input type="text" id="subject" placeholder="e.g., Computer Science, History" required />
+          <input type="text" id="subject" name="subject" placeholder="e.g., Computer Science, History" required />
         </div>
         <div class="form-group">
           <label for="deadline">Deadline</label>
-          <input type="date" id="deadline" />
+          <input type="date" id="deadline" name="deadline" />
         </div>
         <div class="form-group full">
           <label for="requirements">Special Requirements / Details *</label>
-          <textarea id="requirements" placeholder="Describe your requirements, word count, specific guidelines, university name, etc." required></textarea>
+          <textarea id="requirements" name="requirements" placeholder="Describe your requirements, word count, specific guidelines, university name, etc." required></textarea>
+        </div>
+        <div class="form-group full">
+          <label for="driveLink">Google Drive / Dropbox Link (Optional)</label>
+          <input type="url" id="driveLink" name="driveLink" placeholder="https://drive.google.com/... (share your document)" />
+          <span class="file-note">Upload your document to Google Drive or Dropbox and paste the shareable link here. Or send directly via WhatsApp after submitting.</span>
         </div>
         <div class="form-group full">
           <label for="refNo">Payment Reference / UTR (if already paid)</label>
-          <input type="text" id="refNo" placeholder="UPI transaction ID or UTR number" />
+          <input type="text" id="refNo" name="refNo" placeholder="UPI transaction ID or UTR number" />
         </div>
       </div>
-      <button type="submit" class="submit-btn">🚀 Submit Order Request</button>
-      <p class="form-note">By submitting, you agree to our terms. We'll contact you within 2 hours on WhatsApp to confirm the order and share payment details.</p>
+      <button type="submit" class="submit-btn" id="orderSubmitBtn">🚀 Submit Order Request</button>
+      <p class="form-note">By submitting, you agree to our <a href="#" onclick="openTermsModal();return false;" style="color:var(--primary)">Terms of Service & Privacy Policy</a>. We'll contact you within 2 hours on WhatsApp.</p>
     </form>
   </div>
 </section>
@@ -718,33 +888,19 @@
   <div class="section-header">
     <div class="section-tag">Track</div>
     <h2>Track Your Order</h2>
-    <p>Enter your order ID to check the current status of your work.</p>
+    <p>Enter your Order ID to get the latest status.</p>
   </div>
   <div class="track-box">
     <div class="track-input-row">
       <input type="text" id="trackId" placeholder="Enter Order ID (e.g., SA-2024-001)" />
       <button class="track-btn" onclick="trackOrder()">Track</button>
     </div>
-    <div class="track-result" id="trackResult">
-      <h4 style="margin-bottom:12px; font-size:1rem; color:var(--dark)">Order Status: <span style="color:var(--success)">In Progress</span></h4>
-      <div class="track-step">
-        <div class="track-dot"></div>
-        <div><strong>Order Received</strong><br><span style="font-size:.82rem;color:var(--muted)">Payment confirmed and order placed.</span></div>
-      </div>
-      <div class="track-step">
-        <div class="track-dot"></div>
-        <div><strong>Work In Progress</strong><br><span style="font-size:.82rem;color:var(--muted)">Our expert is working on your document.</span></div>
-      </div>
-      <div class="track-step">
-        <div class="track-dot pending"></div>
-        <div><strong>Quality Check</strong><br><span style="font-size:.82rem;color:var(--muted)">Pending — will be done before delivery.</span></div>
-      </div>
-      <div class="track-step">
-        <div class="track-dot pending"></div>
-        <div><strong>Delivered</strong><br><span style="font-size:.82rem;color:var(--muted)">Pending — will be sent to your email/WhatsApp.</span></div>
-      </div>
+    <div id="trackResult"></div>
+    <div class="track-info-box">
+      <strong>How to get your Order ID?</strong><br>
+      After placing an order, your Order ID is sent to you via WhatsApp by our team (format: <strong>SA-YYYY-XXX</strong>). If you haven't received one yet, your order may still be pending confirmation.<br><br>
+      📞 For real-time updates: <a href="https://wa.me/919018620566" style="color:var(--primary);font-weight:600">WhatsApp us</a> with your name and service requested.
     </div>
-    <p style="color:var(--muted);font-size:.85rem;margin-top:16px">Don't have an order ID? <a href="#order" style="color:var(--primary);font-weight:600">Place an order first</a> or contact us on WhatsApp.</p>
   </div>
 </section>
 
@@ -753,6 +909,7 @@
   <div class="section-header">
     <div class="section-tag">Reviews</div>
     <h2>What Our Scholars Say</h2>
+    <p>Genuine feedback from researchers and PhD scholars we've assisted.</p>
   </div>
   <div class="testimonials-grid">
     <div class="testimonial-card">
@@ -760,23 +917,23 @@
       <p>"Got my plagiarism report within 3 hours. The breakdown by chapter was very helpful. Highly recommended for PhD scholars!"</p>
       <div class="reviewer">
         <div class="avatar">RK</div>
-        <div class="reviewer-info"><strong>Ramesh Kumar</strong><span>PhD Scholar, IIT Patna</span></div>
+        <div class="reviewer-info"><strong>Ramesh K.</strong><span>PhD Scholar, North India</span></div>
       </div>
     </div>
     <div class="testimonial-card">
       <div class="stars">★★★★★</div>
-      <p>"The thesis writing service saved me so much time. Chapter 2 and 3 were written perfectly with proper citations. Worth every rupee!"</p>
+      <p>"The thesis assistance saved me so much time. Chapter 2 and 3 were structured perfectly with proper citations. Worth every rupee!"</p>
       <div class="reviewer">
         <div class="avatar">PM</div>
-        <div class="reviewer-info"><strong>Priya Mehta</strong><span>M.Phil., Osmania University</span></div>
+        <div class="reviewer-info"><strong>Priya M.</strong><span>M.Phil. Student, South India</span></div>
       </div>
     </div>
     <div class="testimonial-card">
       <div class="stars">★★★★★</div>
-      <p>"AI Humanizer is a lifesaver. My content passed Turnitin AI detection check after using this service. Prompt and professional."</p>
+      <p>"AI Humanizer improved the flow and readability of my draft significantly. Prompt and professional service."</p>
       <div class="reviewer">
         <div class="avatar">AS</div>
-        <div class="reviewer-info"><strong>Arjun Singh</strong><span>Research Scholar, BHU</span></div>
+        <div class="reviewer-info"><strong>Arjun S.</strong><span>Research Scholar, Central India</span></div>
       </div>
     </div>
     <div class="testimonial-card">
@@ -784,7 +941,7 @@
       <p>"Statistical analysis using SPSS was done accurately with proper interpretation. The team was very patient with my queries."</p>
       <div class="reviewer">
         <div class="avatar">NT</div>
-        <div class="reviewer-info"><strong>Neha Tiwari</strong><span>PhD Student, Panjab University</span></div>
+        <div class="reviewer-info"><strong>Neha T.</strong><span>PhD Student, North India</span></div>
       </div>
     </div>
     <div class="testimonial-card">
@@ -792,18 +949,19 @@
       <p>"Literature review was comprehensive with 80+ recent papers. The research gap analysis was spot on. Fast delivery too!"</p>
       <div class="reviewer">
         <div class="avatar">MJ</div>
-        <div class="reviewer-info"><strong>Mohit Joshi</strong><span>Research Fellow, IGNOU</span></div>
+        <div class="reviewer-info"><strong>Mohit J.</strong><span>Research Fellow, West India</span></div>
       </div>
     </div>
     <div class="testimonial-card">
       <div class="stars">★★★★★</div>
-      <p>"Synopsis writing for my PhD admission was done flawlessly. Got selected in the first attempt. ScholarAid is the best!"</p>
+      <p>"Synopsis writing for my PhD admission was done flawlessly. Got selected in the first attempt. ScholarAid is reliable!"</p>
       <div class="reviewer">
         <div class="avatar">DV</div>
-        <div class="reviewer-info"><strong>Deepa Varma</strong><span>PhD Aspirant, Kerala University</span></div>
+        <div class="reviewer-info"><strong>Deepa V.</strong><span>PhD Aspirant, Kerala</span></div>
       </div>
     </div>
   </div>
+  <p class="review-note">* Reviews are from verified clients. Names are abbreviated to protect privacy.</p>
 </section>
 
 <!-- FAQ -->
@@ -827,9 +985,9 @@
     </div>
     <div class="faq-item">
       <div class="faq-question" onclick="toggleFaq(this)">
-        What is the turnaround time for thesis writing? <span class="faq-icon">+</span>
+        What is the turnaround time for thesis assistance? <span class="faq-icon">+</span>
       </div>
-      <div class="faq-answer"><p>Thesis writing timelines depend on the scope. A single chapter takes 5–10 days. A full thesis (5–6 chapters) typically takes 3–8 weeks. Express delivery is available for an additional charge.</p></div>
+      <div class="faq-answer"><p>Thesis assistance timelines depend on scope. A single chapter takes 5–10 days. A full thesis (5–6 chapters) typically takes 3–8 weeks. Express delivery is available for an additional charge.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-question" onclick="toggleFaq(this)">
@@ -855,6 +1013,12 @@
       </div>
       <div class="faq-answer"><p>If work has not started, a full refund is provided. Once work begins, a partial refund (50%) is offered. After delivery, refunds are not applicable but free revisions are provided to meet your requirements.</p></div>
     </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        How do I send my document? <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer"><p>You can share a Google Drive or Dropbox link in the order form, or send your document directly to us via WhatsApp (+91 90186 20566) or email (scholaraid.help@gmail.com) after placing your order.</p></div>
+    </div>
   </div>
 </section>
 
@@ -874,19 +1038,21 @@
 
     <!-- Feedback Tab -->
     <div class="tab-pane active" id="feedback-tab">
-      <form onsubmit="submitFeedback(event)">
+      <form action="https://formspree.io/f/xnndpblg" method="POST" onsubmit="handleFeedbackSubmit(event)">
+        <input type="hidden" name="_subject" value="ScholarAid Feedback" />
+        <input type="hidden" name="formType" value="feedback" />
         <div class="form-grid">
           <div class="form-group">
             <label>Your Name</label>
-            <input type="text" placeholder="Full name" />
+            <input type="text" name="name" placeholder="Full name" />
           </div>
           <div class="form-group">
             <label>Email / WhatsApp</label>
-            <input type="text" placeholder="Contact info" />
+            <input type="text" name="contact" placeholder="Contact info" />
           </div>
           <div class="form-group">
             <label>Service Used</label>
-            <select>
+            <select name="service">
               <option>-- Select --</option>
               <option>Plagiarism Check</option>
               <option>Thesis Writing</option>
@@ -906,17 +1072,18 @@
               <span onclick="setRating(4)">★</span>
               <span onclick="setRating(5)">★</span>
             </div>
+            <input type="hidden" name="rating" id="ratingValue" value="" />
           </div>
           <div class="form-group full">
             <label>Your Feedback</label>
-            <textarea placeholder="Share your experience with our service..."></textarea>
+            <textarea name="feedback" placeholder="Share your experience with our service..." required></textarea>
           </div>
           <div class="form-group full">
             <label>Would you recommend us?</label>
             <div class="radio-group">
-              <label class="radio-label"><input type="radio" name="recommend" value="yes" /> Yes, definitely!</label>
-              <label class="radio-label"><input type="radio" name="recommend" value="maybe" /> Maybe</label>
-              <label class="radio-label"><input type="radio" name="recommend" value="no" /> No</label>
+              <label class="radio-label"><input type="radio" name="recommend" value="Yes" /> Yes, definitely!</label>
+              <label class="radio-label"><input type="radio" name="recommend" value="Maybe" /> Maybe</label>
+              <label class="radio-label"><input type="radio" name="recommend" value="No" /> No</label>
             </div>
           </div>
         </div>
@@ -926,31 +1093,32 @@
 
     <!-- Grievance Tab -->
     <div class="tab-pane" id="grievance-tab">
-      <form onsubmit="submitGrievance(event)">
+      <form action="https://formspree.io/f/xnndpblg" method="POST" onsubmit="handleFeedbackSubmit(event)">
+        <input type="hidden" name="_subject" value="ScholarAid Grievance" />
+        <input type="hidden" name="formType" value="grievance" />
         <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:.88rem;color:#991b1b;">
           ⚠️ We take grievances seriously. All complaints are addressed within <strong>48 hours</strong>. Please provide your Order ID for faster resolution.
         </div>
         <div class="form-grid">
           <div class="form-group">
             <label>Your Name *</label>
-            <input type="text" placeholder="Full name" required />
+            <input type="text" name="name" placeholder="Full name" required />
           </div>
           <div class="form-group">
             <label>Contact (Email/WhatsApp) *</label>
-            <input type="text" placeholder="Your contact info" required />
+            <input type="text" name="contact" placeholder="Your contact info" required />
           </div>
           <div class="form-group">
             <label>Order ID *</label>
-            <input type="text" placeholder="e.g., SA-2024-001" required />
+            <input type="text" name="orderId" placeholder="e.g., SA-2024-001" required />
           </div>
           <div class="form-group">
             <label>Issue Type *</label>
-            <select required>
+            <select name="issueType" required>
               <option value="">-- Select --</option>
               <option>Delayed Delivery</option>
               <option>Quality Not as Expected</option>
               <option>Payment Issue</option>
-              <option>Plagiarism in Delivered Work</option>
               <option>Miscommunication</option>
               <option>Refund Request</option>
               <option>Other</option>
@@ -958,15 +1126,15 @@
           </div>
           <div class="form-group full">
             <label>Describe Your Issue *</label>
-            <textarea placeholder="Please describe the issue in detail. The more specific you are, the faster we can resolve it..." required></textarea>
+            <textarea name="issue" placeholder="Please describe the issue in detail..." required></textarea>
           </div>
           <div class="form-group full">
             <label>Expected Resolution</label>
             <div class="radio-group">
-              <label class="radio-label"><input type="radio" name="resolution" /> Redo the Work</label>
-              <label class="radio-label"><input type="radio" name="resolution" /> Partial Refund</label>
-              <label class="radio-label"><input type="radio" name="resolution" /> Full Refund</label>
-              <label class="radio-label"><input type="radio" name="resolution" /> Apology & Explanation</label>
+              <label class="radio-label"><input type="radio" name="resolution" value="Redo the Work" /> Redo the Work</label>
+              <label class="radio-label"><input type="radio" name="resolution" value="Partial Refund" /> Partial Refund</label>
+              <label class="radio-label"><input type="radio" name="resolution" value="Full Refund" /> Full Refund</label>
+              <label class="radio-label"><input type="radio" name="resolution" value="Apology" /> Apology & Explanation</label>
             </div>
           </div>
         </div>
@@ -976,19 +1144,21 @@
 
     <!-- Suggestion Tab -->
     <div class="tab-pane" id="suggestion-tab">
-      <form onsubmit="submitSuggestion(event)">
+      <form action="https://formspree.io/f/xnndpblg" method="POST" onsubmit="handleFeedbackSubmit(event)">
+        <input type="hidden" name="_subject" value="ScholarAid Suggestion" />
+        <input type="hidden" name="formType" value="suggestion" />
         <div class="form-grid">
           <div class="form-group">
             <label>Name (Optional)</label>
-            <input type="text" placeholder="Anonymous is fine too" />
+            <input type="text" name="name" placeholder="Anonymous is fine too" />
           </div>
           <div class="form-group">
             <label>Email (Optional)</label>
-            <input type="email" placeholder="For follow-up response" />
+            <input type="email" name="email" placeholder="For follow-up response" />
           </div>
           <div class="form-group full">
             <label>Suggestion Category</label>
-            <select>
+            <select name="category">
               <option>New Service Idea</option>
               <option>Pricing Feedback</option>
               <option>Website Improvement</option>
@@ -998,7 +1168,7 @@
           </div>
           <div class="form-group full">
             <label>Your Suggestion *</label>
-            <textarea placeholder="What would you like to see improved or added? Your suggestions help us serve you better!" required></textarea>
+            <textarea name="suggestion" placeholder="What would you like to see improved or added?" required></textarea>
           </div>
         </div>
         <button type="submit" class="submit-btn" style="background:var(--success)">💡 Submit Suggestion</button>
@@ -1011,17 +1181,19 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <span class="nav-logo">Scholar<span>Aid</span></span>
+      <a href="#home" class="nav-logo">Scholar<span>Aid</span></a>
       <p>Professional academic support services for PhD scholars, postgraduate students, and researchers across India. Confidential, affordable, and reliable.</p>
+      <p style="margin-top:10px;font-size:.82rem;color:rgba(255,255,255,.4)">Services are for academic assistance purposes only.</p>
     </div>
     <div class="footer-col">
       <h4>Services</h4>
       <ul>
         <li><a href="#order">Plagiarism Check</a></li>
-        <li><a href="#order">Thesis Writing</a></li>
+        <li><a href="#order">Thesis Assistance</a></li>
         <li><a href="#order">AI Humanizer</a></li>
         <li><a href="#order">Research Papers</a></li>
         <li><a href="#order">Literature Review</a></li>
+        <li><a href="#order">Statistical Analysis</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1032,6 +1204,7 @@
         <li><a href="#track">Track Order</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#feedback">Grievance</a></li>
+        <li><a href="#" onclick="openTermsModal();return false;">Terms & Privacy</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1039,13 +1212,18 @@
       <ul>
         <li><a href="tel:+919018620566">📱 +91 90186 20566</a></li>
         <li><a href="https://wa.me/919018620566">💬 WhatsApp Us</a></li>
-        <li><a href="#">⏰ Mon–Sat, 9AM–9PM</a></li>
+        <li><a href="mailto:scholaraid.help@gmail.com">📧 scholaraid.help@gmail.com</a></li>
+        <li><a href="#">⏰ Mon–Sat, 9AM–9PM IST</a></li>
         <li><a href="#">📍 India</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2024 Najar and Co. All rights reserved. | Confidential Academic Support Services</p>
+    <p>© 2026 ScholarAid (Najar and Co.). All rights reserved.</p>
+    <div style="display:flex;gap:16px">
+      <a href="#" onclick="openTermsModal();return false;">Terms of Service</a>
+      <a href="#" onclick="openTermsModal();return false;">Privacy Policy</a>
+    </div>
   </div>
 </footer>
 
@@ -1058,116 +1236,107 @@
 <!-- Payment Modal -->
 <div class="modal-overlay" id="paymentModal">
   <div class="modal">
-    <button class="modal-close" onclick="closePaymentModal()">×</button>
+    <button class="modal-close" onclick="closeModal('paymentModal')">×</button>
     <h3>Payment Details</h3>
-    <p>Scan QR or use UPI ID below to make payment.</p>
+    <p>Use UPI ID below or scan QR code to pay. Send screenshot to WhatsApp after payment.</p>
     <div class="qr-placeholder">
       <span>📱</span>
-      <div>QR Code<br><small>(Will be added soon)</small></div>
+      <div style="font-size:.78rem;color:var(--muted)">Scan via GPay / PhonePe / Paytm<br><small>QR coming soon — use UPI ID below</small></div>
     </div>
     <div class="modal-upi" id="modalUpiId">najarzain5-4@okicici</div>
-    <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px">After payment, send screenshot on WhatsApp with your Order ID for confirmation.</p>
+    <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px">After payment, send screenshot on WhatsApp with your name and service requested.</p>
     <button class="copy-btn" onclick="copyUpi()">📋 Copy UPI ID</button>
+    <a href="upi://pay?pa=najarzain5-4@okicici&pn=ScholarAid&cu=INR" class="copy-btn" style="display:block;margin-top:10px;text-align:center;text-decoration:none;background:var(--success)">📲 Open UPI App</a>
   </div>
 </div>
 
 <!-- Order Quick Modal -->
 <div class="modal-overlay" id="orderModal">
   <div class="modal">
-    <button class="modal-close" onclick="closeOrderModal()">×</button>
+    <button class="modal-close" onclick="closeModal('orderModal')">×</button>
     <h3 id="orderModalTitle">Place Order</h3>
     <p>Fill the full form below or contact us directly on WhatsApp for a quick quote.</p>
-    <div style="display:flex;flex-direction:column;gap:12px">
-      <button class="submit-btn" onclick="closeOrderModal();scrollToOrder()">📝 Fill Order Form</button>
-      <button class="submit-btn" style="background:var(--success)" onclick="openWhatsApp()">💬 Chat on WhatsApp</button>
-      <button class="submit-btn" style="background:var(--secondary)" onclick="closeOrderModal();openPaymentModal()">💳 Payment Details</button>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px">
+      <button class="submit-btn" onclick="closeModal('orderModal');scrollToOrder()">📝 Fill Order Form</button>
+      <a href="https://wa.me/919018620566" class="submit-btn" style="text-align:center;text-decoration:none;background:var(--success);display:block">💬 Chat on WhatsApp</a>
+      <button class="submit-btn" style="background:var(--muted)" onclick="closeModal('orderModal');openPaymentModal()">💳 Payment Details</button>
     </div>
   </div>
 </div>
 
+<!-- Terms & Privacy Modal -->
+<div class="modal-overlay" id="termsModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('termsModal')">×</button>
+    <h3>Terms of Service & Privacy Policy</h3>
+    <p style="color:var(--muted);font-size:.82rem;margin-bottom:8px">Last updated: January 2026</p>
+
+    <h4>1. Service Usage</h4>
+    <p>ScholarAid provides academic editing, research assistance, and reference services. All materials are for educational and reference purposes only. Clients are solely responsible for how they use the materials in accordance with their institution's policies.</p>
+
+    <h4>2. Academic Integrity</h4>
+    <p>We do not condone academic misconduct, plagiarism, or violations of institutional policies. By using our services, you confirm that you will use our assistance ethically and in compliance with your institution's guidelines.</p>
+
+    <h4>3. Confidentiality</h4>
+    <p>All documents, personal information, and communications are strictly confidential. We do not share, publish, sell, or reuse any client data or content under any circumstances.</p>
+
+    <h4>4. Payment & Refunds</h4>
+    <p>Payments are accepted via UPI only. Full refunds are provided if work has not started. Once work begins, a 50% partial refund applies. No refund after delivery, but unlimited revisions within 7 days are provided.</p>
+
+    <h4>5. Delivery & Timelines</h4>
+    <p>Delivery timelines are estimates and may vary based on complexity. Express delivery is available at additional cost. We are not liable for delays caused by incomplete information from the client.</p>
+
+    <h4>6. Privacy Policy</h4>
+    <p>We collect only the information necessary to fulfill your order (name, email, WhatsApp number, document details). This data is never sold or shared with third parties. You may request deletion of your data at any time by contacting us.</p>
+
+    <h4>7. Contact</h4>
+    <p>For any queries: WhatsApp +91 90186 20566 or email scholaraid.help@gmail.com</p>
+
+    <button class="copy-btn" onclick="closeModal('termsModal')" style="margin-top:8px">I Understand — Close</button>
+  </div>
+</div>
+
 <!-- WhatsApp Float -->
-<button class="whatsapp-float" onclick="openWhatsApp()" title="Chat on WhatsApp">💬</button>
+<a href="https://wa.me/919018620566" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
 
 <script>
-  // ── UTILS ──
-  function showToast(msg, icon = '✅') {
-    const t = document.getElementById('toast');
-    document.getElementById('toastMsg').textContent = msg;
-    document.getElementById('toastIcon').textContent = icon;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3500);
-  }
-
   // ── MOBILE MENU ──
   function toggleMobileMenu() {
-    const links = document.querySelector('.nav-links');
-    if (links.style.display === 'flex') {
-      links.style.display = 'none';
-    } else {
-      links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#fff;padding:20px 5%;border-bottom:1px solid var(--border);gap:16px;z-index:99';
-    }
+    const nav = document.getElementById('mobileNav');
+    nav.classList.toggle('open');
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileNav').classList.remove('open');
   }
 
-  // ── SCROLL ──
+  // ── SCROLL TO ORDER ──
   function scrollToOrder() {
     document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
   }
 
-  // ── FAQ ──
-  function toggleFaq(el) {
-    const item = el.parentElement;
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+  // ── TOAST ──
+  function showToast(msg, icon = '✅', type = '') {
+    const t = document.getElementById('toast');
+    t.className = 'toast show' + (type ? ' ' + type : '');
+    document.getElementById('toastMsg').textContent = msg;
+    document.getElementById('toastIcon').textContent = icon;
+    setTimeout(() => t.classList.remove('show'), 3500);
   }
 
-  // ── TABS ──
-  function switchTab(tabId, btn) {
-    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
-    btn.classList.add('active');
+  // ── MODAL HELPERS ──
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
   }
-
-  // ── RATING STARS ──
-  let currentRating = 0;
-  function setRating(n) {
-    currentRating = n;
-    const stars = document.querySelectorAll('#ratingStars span');
-    stars.forEach((s, i) => {
-      s.style.color = i < n ? '#f59e0b' : '#cbd5e1';
-      s.classList.toggle('selected', i < n);
-    });
-  }
-
-  // ── PAYMENT MODAL ──
   function openPaymentModal() {
     document.getElementById('paymentModal').classList.add('open');
   }
-  function closePaymentModal() {
-    document.getElementById('paymentModal').classList.remove('open');
+  function openTermsModal() {
+    document.getElementById('termsModal').classList.add('open');
   }
-  function copyUpi() {
-    const upi = document.getElementById('modalUpiId').textContent;
-    if (upi.includes('Coming Soon')) {
-      showToast('UPI ID will be updated soon! Contact via WhatsApp.', '📱');
-    } else {
-      navigator.clipboard.writeText(upi).then(() => showToast('UPI ID copied to clipboard!'));
-    }
-  }
-
-  // ── ORDER MODAL ──
   function openOrderModal(service) {
+    const modal = document.getElementById('orderModal');
     document.getElementById('orderModalTitle').textContent = 'Order: ' + service;
-    document.getElementById('orderModal').classList.add('open');
-    // Pre-select service in the form
-    const sel = document.getElementById('service');
-    for (let opt of sel.options) {
-      if (opt.value.startsWith(service)) { sel.value = opt.value; break; }
-    }
-  }
-  function closeOrderModal() {
-    document.getElementById('orderModal').classList.remove('open');
+    modal.classList.add('open');
   }
 
   // Close modals on overlay click
@@ -1177,69 +1346,127 @@
     });
   });
 
-  // ── WHATSAPP ──
-  function openWhatsApp() {
-    const msg = encodeURIComponent("Hello! I need help with an academic service. Please guide me.");
-    window.open('https://wa.me/919018620566?text=' + msg, '_blank');
-    showToast('Opening WhatsApp...', '💬');
+  // ── COPY UPI ──
+  function copyUpi() {
+    const upi = document.getElementById('modalUpiId').textContent;
+    navigator.clipboard.writeText(upi).then(() => {
+      showToast('UPI ID copied!', '📋');
+    }).catch(() => {
+      showToast('UPI ID: ' + upi, '📋');
+    });
   }
 
-  // ── FORMS ──
-  function submitOrder(e) {
+  // ── FAQ TOGGLE ──
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  // ── TABS ──
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // ── STAR RATING ──
+  let selectedRating = 0;
+  function setRating(n) {
+    selectedRating = n;
+    document.getElementById('ratingValue').value = n + ' stars';
+    const stars = document.querySelectorAll('#ratingStars span');
+    stars.forEach((s, i) => {
+      s.classList.toggle('selected', i < n);
+    });
+  }
+
+  // ── ORDER FORM SUBMIT (Formspree) ──
+  async function handleOrderSubmit(e) {
     e.preventDefault();
-    const name = document.getElementById('fullName').value;
-    showToast(`Order submitted, ${name.split(' ')[0]}! We'll contact you within 2 hours. 🎉`);
-    e.target.reset();
-    // Generate a fake order ID for UX
-    const orderId = 'SA-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random()*9000)+1000);
-    setTimeout(() => showToast(`Your Order ID: ${orderId} — Save this!`, '🆔'), 4000);
+    const btn = document.getElementById('orderSubmitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Submitting…';
+    const form = document.getElementById('orderForm');
+    const data = new FormData(form);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('orderSuccess').style.display = 'block';
+        showToast('Order submitted successfully!', '🎉', 'success');
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.innerHTML = '🚀 Submit Order Request';
+      showToast('Submission failed. Please WhatsApp us directly.', '❌', 'error');
+    }
   }
 
-  function submitFeedback(e) {
+  // ── FEEDBACK/GRIEVANCE/SUGGESTION SUBMIT ──
+  async function handleFeedbackSubmit(e) {
     e.preventDefault();
-    showToast('Thank you for your feedback! We really appreciate it. 💙');
-    e.target.reset();
-    setRating(0);
-    document.querySelectorAll('#ratingStars span').forEach(s => s.style.color = '');
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const origText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Submitting…';
+    const data = new FormData(form);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.reset();
+        showToast('Thank you! Your submission was received.', '✅', 'success');
+      } else {
+        throw new Error('error');
+      }
+    } catch {
+      showToast('Submission failed. Please contact us via WhatsApp.', '❌', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = origText;
+    }
   }
 
-  function submitGrievance(e) {
-    e.preventDefault();
-    showToast('Grievance submitted! We will resolve it within 48 hours.', '⚠️');
-    e.target.reset();
-  }
-
-  function submitSuggestion(e) {
-    e.preventDefault();
-    showToast('Suggestion received! Thank you for helping us improve. 💡');
-    e.target.reset();
-  }
-
-  // ── TRACK ORDER ──
+  // ── ORDER TRACKING ──
   function trackOrder() {
     const id = document.getElementById('trackId').value.trim();
-    if (!id) { showToast('Please enter an Order ID.', '❌'); return; }
-    const result = document.getElementById('trackResult');
-    result.style.display = 'block';
-    showToast(`Showing status for: ${id}`, '🔍');
+    const resultEl = document.getElementById('trackResult');
+    if (!id) {
+      showToast('Please enter your Order ID.', '⚠️');
+      return;
+    }
+    // Realistic response — no fake status
+    resultEl.style.display = 'block';
+    resultEl.innerHTML = `
+      <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:12px;padding:20px;margin-top:16px;text-align:left;">
+        <strong style="color:var(--primary);font-size:1rem;">Order ID: ${escapeHtml(id)}</strong><br><br>
+        <p style="font-size:.9rem;color:#0c4a6e;line-height:1.7;">
+          We currently handle order status updates directly via WhatsApp to ensure accuracy.<br><br>
+          Please message us with your Order ID for a real-time update:<br>
+          <a href="https://wa.me/919018620566?text=Order+Status+Request%3A+${encodeURIComponent(id)}" 
+             style="display:inline-block;margin-top:10px;background:#25d366;color:#fff;padding:10px 20px;border-radius:50px;text-decoration:none;font-weight:700;font-size:.9rem;">
+            💬 Get Status on WhatsApp
+          </a>
+        </p>
+      </div>`;
   }
 
-  // ── ANIMATE ON SCROLL ──
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.service-card, .pricing-card, .testimonial-card, .step').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity .5s ease, transform .5s ease';
-    observer.observe(el);
-  });
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
 </script>
 </body>
 </html>
